@@ -44,7 +44,7 @@ function showoption(){
     const hold=[]
     var search_value=search.value
     for (const iterator of array) {
-        if(iterator.includes(search_value)){
+        if(iterator.toLowerCase().includes(search_value.toLowerCase())){
             hold.push(iterator)
         }
     }

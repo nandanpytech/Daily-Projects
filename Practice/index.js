@@ -235,3 +235,187 @@ const {name:myname}=user        //We can give our own naming to variable.
     console.log(res.total)
 
 }
+
+
+{
+//synchronous vs asynchronous
+console.log("start")
+console.log("finish")
+
+//vs
+console.log("start")
+setTimeout(()=>{
+    console.log("hi")
+},1000)
+console.log("finish")
+}
+
+{
+//async example and callback hell example
+
+console.log("start")
+
+function action(username,cb){
+    setTimeout(()=>{
+        cb(`hi ${username}`)
+    })
+}
+function likevideo(username,cb){
+    setTimeout(()=>{
+        cb(` ${username} liked it`)
+    })
+}
+
+const res=action("Roadside coder",function(msg){
+    console.log(msg)
+    likevideo("nandan",function(msg){
+            console.log(msg)
+        })
+        //we can call multiple callback here.
+})
+
+console.log("stop")
+}
+
+{
+//promise
+const sub=new Promise((res,rej)=>{
+    setTimeout(()=>{
+        if(true){
+            res("resolved")
+        }else{
+            rej(new Error("error"))
+        }
+    },1000)
+    
+})
+sub.then((res)=>console.log(res))
+sub.catch((err)=>console.log(err))
+}
+
+
+{
+//promise chaining
+
+function firstactioin(username){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(` hi ${username}`)
+        })
+    })
+    
+}
+function likevideo(username){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(` ${username} liked it`)
+        })
+    })
+    
+}
+
+firstactioin("nandan").then((res)=>{
+    return likevideo("Nandan")
+})
+.then((res)=>console.log(res))
+
+}
+
+
+{
+
+//promise combinators
+
+function firstactioin(username){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(` hi ${username}`)
+        })
+    })
+    
+}
+function likevideo(username){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(` ${username} liked it`)
+        })
+    })
+    
+}
+
+let a=Promise.all([
+firstactioin("nandna"),
+likevideo("Nandan")
+])
+a.then((res)=>console.log(res))
+
+}
+
+{
+//promise race
+function firstactioin(username){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(` hi ${username}`)
+        },1000)
+    })
+    
+}
+function likevideo(username){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(` ${username} liked it`)
+        })
+    },500)
+    
+}
+
+let a=Promise.race([
+firstactioin("nandna"),
+likevideo("Nandan")
+])
+a.then((res)=>console.log(res))
+
+}
+
+
+
+{
+//Async and await
+
+function firstactioin(username){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(` hi ${username}`)
+        },1000)
+    })
+    
+}
+function likevideo(username){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(` ${username} liked it`)
+        })
+    },500)
+    
+}
+
+const nandan=async()=>{
+    const b= firstactioin("nandan")
+    console.log(b)                  //return promise itself
+    const a=await firstactioin("nandan")
+    console.log(a)                      //he gives "hi nandan"
+}
+nandan()
+}
+
+{
+  //what's the output:
+  console.log("start")
+  const a=new Promise((res,rej)=>{
+      console.log("1")                //it executes after logging "start" bcoz javascript always try to search async operation inside Promise.
+      res("hi")
+  })
+  a.then((res)=>console.log(res))
+  console.log("end")
+}
