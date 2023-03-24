@@ -21,9 +21,8 @@ function PaperContent() {
     `
 
         const gradient={
-            WebkitBackgroundClip: "text",
-            
-        WebkitTextFillColor: "transparent",
+            WebkitBackgroundClip: "text", 
+            WebkitTextFillColor: "transparent",
         }
 
 
