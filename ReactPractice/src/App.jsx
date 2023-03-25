@@ -8,6 +8,8 @@ import ParentForwardRef from './components/ParentForwardRef'
 import Pure from './components/Pure'
 import ReactMemmo from './components/ReactMemmo'
 import Reffs from './components/Reffs'
+import About from './components/Router/About'
+import Home from './components/Router/Home'
 import Unpure from './components/Unpure'
 import Calllback from './components/useCallback/Calllback'
 import CounterIncrease from './components/useEffect/CounterIncrease'
@@ -18,11 +20,14 @@ import Memo2 from './components/useMemo/Memo2'
 import Reducer1 from './components/useReducer/Reducer1'
 import Reducer2 from './components/useReducer/Reducer2'
 import Reducer3 from './components/useReducer/Reducer3'
+import {
+  createBrowserRouter,
+} from "react-router-dom";
+import Error from './components/Router/Error'
 
 function App() {
-
   return (
-   <div className="App">
+    <>  
     {/* <Unpure/> */}
     {/* <Reffs/> */}
     {/* <CbRef/> */}
@@ -40,9 +45,26 @@ function App() {
       <Context2/>
     </Provider> */}
     {/* <Memo1/> */}
-    <Calllback/>
-   </div>
+    {/* <Calllback/> */}    
+    <Home/>
+    </>
+
   )
-}
+};
+
+ export const root=createBrowserRouter(
+  [
+    {
+    path:"/",
+    element:<App/>,
+    errorElement:<Error/>
+    },
+    {
+      path:"/about",
+      element:<About/>
+    },
+   
+  ]
+)
 
 export default App
