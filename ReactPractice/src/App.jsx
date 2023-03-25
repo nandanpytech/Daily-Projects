@@ -22,8 +22,12 @@ import Reducer2 from './components/useReducer/Reducer2'
 import Reducer3 from './components/useReducer/Reducer3'
 import {
   createBrowserRouter,
+  Outlet
 } from "react-router-dom";
 import Error from './components/Router/Error'
+import Contact from './components/Router/Contact'
+import Header from './components/Router/Header'
+import Restaurant from './components/Router/Restaurant'
 
 function App() {
   return (
@@ -46,7 +50,10 @@ function App() {
     </Provider> */}
     {/* <Memo1/> */}
     {/* <Calllback/> */}    
-    <Home/>
+ 
+    <Header/>
+    <Outlet/>
+
     </>
 
   )
@@ -57,12 +64,28 @@ function App() {
     {
     path:"/",
     element:<App/>,
-    errorElement:<Error/>
+    errorElement:<Error/>,
+    children:[
+     
+      {
+        path:"/",
+        element:<Home/>
+      },
+      {
+        path:"/about",
+        element:<About/>
+      },
+      {
+        path:"/contact",
+        element:<Contact/>
+      },
+      {
+        path:"/restaurant/:id",
+        element:<Restaurant/>
+      },
+    ]
     },
-    {
-      path:"/about",
-      element:<About/>
-    },
+    
    
   ]
 )
