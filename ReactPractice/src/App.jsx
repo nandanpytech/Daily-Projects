@@ -30,6 +30,10 @@ import Header from './components/Router/Header'
 import Restaurant from './components/Router/Restaurant'
 
 function App() {
+
+  const a=fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=30531&submitAction=ENTER")
+  a.then(res=>res.json())
+  a.then(res=>console.log(res))
   return (
     <>  
     {/* <Unpure/> */}
