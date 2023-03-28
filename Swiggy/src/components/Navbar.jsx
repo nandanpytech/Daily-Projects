@@ -22,8 +22,6 @@ const FirstStack=styled(Stack)`
         color:#fc8019 ;
         margin-left: 5px !important;
         font-size: 1.5rem;
-        /* padding-bottom: 5px; */
-
     }
 `
 
