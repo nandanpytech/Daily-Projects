@@ -1,6 +1,9 @@
 import {React,useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant_Details } from '../utils/const'
+import Breadcrumb from './Breadcrumb'
+import MenuItem from './MenuItem'
+import RestaurantDetails from './RestaurantDetails'
 
 
 function RestaurantMenu() {
@@ -16,7 +19,12 @@ function RestaurantMenu() {
   }, [])
   
   return (
-     <h1>hk</h1>
+    <div className="menu">
+        <Breadcrumb/>
+        <RestaurantDetails/>
+        <MenuItem/>
+    </div>
+ 
   )
 }
 

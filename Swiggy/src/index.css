@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    font-family: 'Manrope', sans-serif !important;
 }
 
 .App{
@@ -31,4 +35,17 @@ a{
 }
 #Filter-icon-inside::before{
     content: "\E92C";
+}
+.menu{
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.MuiBreadcrumbs-separator{
+    font-size: 10px;
+    position: relative;
+    top: -2px;
+}
+.MuiBreadcrumbs-li{
+    display: flex;
 }

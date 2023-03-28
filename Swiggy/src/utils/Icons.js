@@ -7,6 +7,11 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import StarIcon from '@mui/icons-material/Star';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
+import TimelapseIcon from '@mui/icons-material/Timelapse';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import EjectIcon from '@mui/icons-material/Eject';
 
 export {KeyboardArrowDownIcon,
     SearchIcon,
@@ -16,5 +21,10 @@ export {KeyboardArrowDownIcon,
     ShoppingBagOutlinedIcon,
     Card,
     CardMedia,
-    StarIcon
+    StarIcon,
+    FavoriteBorderIcon,
+    DirectionsBikeIcon,
+    TimelapseIcon,
+    CurrencyRupeeIcon,
+    EjectIcon
 }
