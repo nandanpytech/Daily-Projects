@@ -7,8 +7,9 @@ import { EjectIcon } from '../utils/Icons'
 
 
 function MenuItem({ItemDetails}) {
-   const {category,imageId,name}=ItemDetails
+   const {category,imageId,name,defaultPrice,description,price,itemAttribute}=ItemDetails
     const ItemName=styled(Stack)`
+        width: 50%;
         & > h6 {
             font-weight: 700;
             margin-bottom: 5px;
@@ -16,18 +17,20 @@ function MenuItem({ItemDetails}) {
         & > span{
             color: #93959f;
             margin-top: 10px;
+            white-space: break-spaces;
         }
        
     `
     const ItemImage=styled(Box)`
     position: relative;
+    height: max-content;
      &>div > button > img{
         width: 130px;
      }
      & > button{
         color: #60b246;
         position: absolute;
-        bottom: 0;
+        bottom: -12px;
         left: 25%;
         background-color: white;
      }
@@ -37,15 +40,15 @@ function MenuItem({ItemDetails}) {
        <Box mb={4}>
             <Stack display="flex" mb={4} justifyContent="space-between" direction="row">
             <ItemName>
-                <EjectIcon/>
+                <EjectIcon sx={{color:itemAttribute.vegClassifier=="VEG"?"#0f8a65":"red"}}/>
                 <Typography component="h6">
-                Chilly Kebab
+                    {name}
                 </Typography>
                 <Typography component="p" variant='body2'>
-                    ₹29 
+                    ₹{(defaultPrice/100) || (price/100)}
                 </Typography>
                 <Typography component="span" variant='body2'>
-                    Serves 1
+                    {description}
                 </Typography>
             </ItemName>
 
@@ -53,7 +56,7 @@ function MenuItem({ItemDetails}) {
             <ItemImage>
                 <Card>
                     <CardActionArea>
-                        <CardMedia component="img"  image={Menu_Item_Image}/>
+                        <CardMedia component="img" width="118px" height="96px" alt="No Image!"  image={Menu_Item_Image+imageId}/>
                     </CardActionArea>
                 </Card>
                 <Button variant='contained' > ADD </Button>

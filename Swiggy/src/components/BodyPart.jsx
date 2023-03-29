@@ -8,6 +8,7 @@ import { CardActionArea, Stack,Box, Divider, Grid } from '@mui/material';
 import { StarIcon } from '../utils/Icons';
 import { card_image } from '../utils/Images';
 import { Link } from 'react-router-dom';
+import ResCardShimmer from './ResCardShimmer';
 
 
 function BodyPart() {
@@ -16,10 +17,11 @@ function BodyPart() {
     <>
     <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>  
       {
+        allRestaurant.length==0? <ResCardShimmer/>:
         allRestaurant.map((element,index)=>{
           return (
               <Grid  item xs={3}>
-                <Link key={index} to={`/restaurant/${element?.data?.id}`}>
+                <Link key={index} to={`/restaurant/${element?.data?.id}/${index}`}>
                     <Card elevation={0} sx={{ maxWidth: 245 }}>
                             <CardActionArea>
                               <CardMedia
@@ -46,17 +48,17 @@ function BodyPart() {
                             
                                 <Stack display="flex" mt={2} mb={1} direction="row" alignItems="center" spacing={3}>
               
-                                    <Stack p={.2} display="flex" direction="row" bgcolor="#db7c38" spacing={.5}>
+                                    <Stack p={.2} display="flex" direction="row" bgcolor={element?.data?.avgRating<4?`#db7c38`:" #48c479"} spacing={.5}>
                                         <StarIcon  sx={{alignSelf:"center",fontSize:"1rem",color:"white"}}/>
-                                        <Box>
+                                        <Box style={{paddingRight:"5px"}}>
                                           <Typography fontSize=".8rem" color="white"  variant='body2' alignSelf="self-end"> 
                                               {element?.data?.avgRating} 
                                           </Typography>
                                         </Box>
                                     </Stack>
               
-                                    <Typography fontSize=".7rem" variant='body1'> 47 mins</Typography>
-                                    <Typography fontSize=".7rem" variant='body1'> ₹300 FOR TWO</Typography>
+                                    <Typography fontSize=".7rem" variant='body1'> {element.data.deliveryTime} mins</Typography>
+                                    <Typography fontSize=".7rem" variant='body1'> ₹{element.data.costForTwo/100} FOR TWO</Typography>
               
                                   
                                 </Stack>

@@ -1,14 +1,37 @@
-import React from 'react'
+import {React,useState,useEffect} from 'react'
 import { Box,Divider,Stack,styled, Typography } from '@mui/material'
 import { StarIcon,DirectionsBikeIcon, TimelapseIcon } from '../utils/Icons'
+import { useParams } from 'react-router-dom'
+import CarouselShimmer from './CarouselShimmer'
+import ResShimmer from './ResShimmer'
 
 function RestaurantDetails() {
+  const {id}=useParams()
+  const [allRestaurant, setallRestaurant] = useState([])
+
+  const fetchRestaurantDetails=async()=>{
+    const Data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&page_type=DESKTOP_WEB_LISTING")
+    const ResDetils=await Data.json()
+    setallRestaurant(ResDetils.data.cards[2].data.data.cards)
+  }
+  useEffect(() => {
+    fetchRestaurantDetails()
+  }, [])
+  console.log(allRestaurant);
+  
+
     const Namestack=styled(Stack)`
     & > div{
       & > h6{
         font-weight: 700;
       }
       & > p{
+        color:#93959f ;
+        font-size: .8rem;
+        margin-bottom: 2px;
+
+      }
+      & > div > p{
         color:#93959f ;
         font-size: .8rem;
         margin-bottom: 2px;
@@ -51,25 +74,38 @@ function RestaurantDetails() {
   `
   return (
     <>
-        
-   <Namestack display="flex" mb={2} direction="row" justifyContent="space-between">
+  {
+    allRestaurant.length==0?
+   <ResShimmer/>
+    :
+    
+    <>
+       <Namestack display="flex" mb={2} direction="row" justifyContent="space-between">
       <Box>
-        <Typography variant='h6' component="h6">Hotel Empire</Typography>
-        <Typography variant='body2' component="p">North Indian, Kebabs</Typography>
-        <Typography variant='body2' component="p">Brigade Road, 2.0 km</Typography>
+        <Typography variant='h6' component="h6">{allRestaurant[id]?.data?.name}</Typography>
+        <Box sx={{display:"flex"}}>
+          {
+            allRestaurant[id].data.cuisines.map((cuisine)=>{
+            return <Typography variant='body2' component="p">{cuisine},</Typography>
+            })
+          }
+        </Box>
+    
+   
+        <Typography variant='body2' component="p">{allRestaurant[id].data.area}, 2.0 km</Typography>
       </Box>
 
       <Box>
           <Ratingstack mb={.3} display="flex"  spacing={.5}  direction="row" justifyContent="center">
             <StarIcon />
             <Typography variant='boy1'>
-                 3.5
+                {allRestaurant[id].data.avgRating}
             </Typography>
           </Ratingstack>
             <Divider />
 
             <Typography sx={{fontSize:".7rem !important"}} variant='body1'>
-              1k+ Ratings
+              {allRestaurant[id].data.totalRatingsString??"No ratings"}
             </Typography>
       </Box>
    </Namestack>
@@ -77,7 +113,7 @@ function RestaurantDetails() {
     <DeliveryFee display="flex" mb={2} direction="row" spacing={1}>
       <DirectionsBikeIcon/>
         <Typography>
-            2 kms | ₹29 Delivery fee will apply
+          {allRestaurant[id].data.lastMileTravelString} | ₹29 Delivery fee will apply
         </Typography>
     </DeliveryFee>
 
@@ -87,16 +123,21 @@ function RestaurantDetails() {
       <Stack display="flex" direction="row" spacing={1}>
         <TimelapseIcon/>
         <Typography variant='body1'>
-            30 MINS
+            {allRestaurant[id].data.deliveryTime} MINS
         </Typography>
       </Stack>
 
       <Stack display="flex" direction="row" spacing={.5}>
         <Typography variant='body1'>
-             ₹450 for two
+             ₹ {allRestaurant[id].data.costForTwo/100} for two
         </Typography>
       </Stack>
     </DeliveryTime>
+    </>
+
+
+  }  
+  
     </>
   )
 }

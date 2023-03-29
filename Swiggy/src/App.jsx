@@ -25,7 +25,7 @@ export const route=createBrowserRouter([
        
       },
       {
-        path: "/restaurant/:id",
+        path: "/restaurant/:resid/:id",
         element: <RestaurantMenu/>
        
       },

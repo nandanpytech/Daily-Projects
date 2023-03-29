@@ -8,10 +8,10 @@ import RestaurantDetails from './RestaurantDetails'
 
 function RestaurantMenu() {
   const [MenuItems, setMenuItems] = useState([])
-  const {id}=useParams()
+  const {resid}=useParams()
 
   const restaurantdetails=async()=>{
-    const data= await fetch(Restaurant_Details+`${id}&submitAction=ENTER`)
+    const data= await fetch(Restaurant_Details+`${resid}&submitAction=ENTER`)
     const res= await data.json()
     // console.table(res.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards)
     setMenuItems(res.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards)
@@ -23,7 +23,7 @@ function RestaurantMenu() {
   return (
     <div className="menu">
         <Breadcrumb/>
-        <RestaurantDetails/>
+        <RestaurantDetails />
         {
           MenuItems.map((e,index)=>{
             if(e.card.card.title){

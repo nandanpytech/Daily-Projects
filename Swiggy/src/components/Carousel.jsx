@@ -9,7 +9,7 @@ import { FoodContext } from '../context/Provide';
 function Carousel() {
     const {setallRestaurant} = useContext(FoodContext)
     const [showPrev, setshowPrev] = useState(false)
-    const [Imagedata, setImagedata] = useState([])
+    const [ResCardDetails, setResCardDetails] = useState([])
     const slider = useRef(null)
     var settings = {
         arrows: false,
@@ -21,9 +21,9 @@ function Carousel() {
     
     async function fetchImages(){
         const Data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&page_type=DESKTOP_WEB_LISTING")
-        const Images_data=await Data.json()
-        setallRestaurant(Images_data.data.cards[2].data.data.cards)
-        setImagedata(Images_data.data.cards[0].data.data.cards)
+        const Rescards=await Data.json()
+        setallRestaurant(Rescards.data.cards[2].data.data.cards)
+        setResCardDetails(Rescards.data.cards[0].data.data.cards)
    
     }
     
@@ -57,12 +57,12 @@ function Carousel() {
     <>
     <Box sx={{marginTop:"4rem",position:"relative"}}>
     {
-        Imagedata.length!=0?(
+        ResCardDetails.length!=0?(
             <Box  bgcolor="#282c3f" p={4}>
             {
                     <Slider  ref={slider} {...settings}>
                         {
-                            Imagedata.map((element)=>{
+                            ResCardDetails.map((element)=>{
                             return (<Card className='Carousel-Card' sx={{width:"max-content !important"}}>
                                         <CardMedia sx={{ height: 260, width:260 }} image={Carousel_Image_Url+"/"+element.data.creativeId}/>
                                     </Card>)

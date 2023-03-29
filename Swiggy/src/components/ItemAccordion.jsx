@@ -1,14 +1,22 @@
-import React from 'react'
+import {React,useState} from 'react'
 import MenuItem from './MenuItem'
 import {Accordion,AccordionSummary,AccordionDetails,Typography} from '@mui/material';
 import { ExpandMoreIcon } from '../utils/Icons';
 
 
 function ItemAccordion({title,ItemCards,categorylength}) {
-  console.log(ItemCards);
+  const [expanded, setExpanded] =useState("panel1")
+
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    console.log(panel)
+    console.log(newExpanded)
+    setExpanded(newExpanded ? panel : false);
+  };
+
   return (
     <>
-         <Accordion >
+         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
