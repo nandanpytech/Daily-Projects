@@ -83,7 +83,7 @@ function RestaurantDetails() {
 
     <Divider/>
 
-    <DeliveryTime display="flex" direction="row" spacing={3}  mt={2}>
+    <DeliveryTime display="flex" direction="row" spacing={3} mb={4}  mt={2}>
       <Stack display="flex" direction="row" spacing={1}>
         <TimelapseIcon/>
         <Typography variant='body1'>

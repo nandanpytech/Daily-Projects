@@ -35,6 +35,7 @@ function Carousel() {
      
   return (
     <>
+    <Box sx={{marginTop:"4rem"}}>
     {
         Imagedata.length!=0?(
             <Box bgcolor="#282c3f" p={4}>
@@ -42,7 +43,7 @@ function Carousel() {
                     <Slider  ref={slider} {...settings}>
                         {
                             Imagedata.map((element)=>{
-                            return (<Card sx={{width:"max-content !important"}}>
+                            return (<Card className='Carousel-Card' sx={{width:"max-content !important"}}>
                                         <CardMedia sx={{ height: 260, width:260 }} image={Carousel_Image_Url+"/"+element.data.creativeId}/>
                                     </Card>)
                             })
@@ -52,11 +53,12 @@ function Carousel() {
              }
             </Box>
         ):
-        <Box  bgcolor="#282c3f" p={4}>
+        <Box   bgcolor="#282c3f" p={4}>
             <CarouselShimmer/>   
         </Box>
     }
-        
+    </Box>
+    
     </>
   )
 }

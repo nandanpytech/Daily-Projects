@@ -49,3 +49,9 @@ a{
 .MuiBreadcrumbs-li{
     display: flex;
 }
+.Carousel-Card{
+    transition: all 15s linear;
+}
+.Carousel-Card:hover{
+    transform: scale(1.05);
+}

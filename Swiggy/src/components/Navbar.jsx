@@ -38,14 +38,14 @@ const SecondStack=styled(Stack)`
 
 `
   return (
-    <Stack display="flex" spacing={4} p={1} direction="row">
+    <Stack sx={{position:"fixed",top:0,width:"100%",backgroundColor:"white",zIndex:1}} display="flex" spacing={4} p={1} direction="row">
         <img width="100" height="50" src="https://banner2.cleanpng.com/20180616/afx/kisspng-swiggy-office-business-online-food-ordering-delive-swiggy-5b251ebb823014.9894761415291593555333.jpg" alt="" />
         <FirstStack display="flex" spacing={2} direction="row" alignItems="center">
             <Typography component="h4">
                 Others
             </Typography>
             <Typography>
-                Bengalurru,Karnatak,India
+                Bengalurru,Karnatak,India 
              
             </Typography>
             <KeyboardArrowDownIcon id="arrowicon"/>

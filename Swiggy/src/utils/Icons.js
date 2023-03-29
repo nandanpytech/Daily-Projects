@@ -12,6 +12,7 @@ import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import TimelapseIcon from '@mui/icons-material/Timelapse';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import EjectIcon from '@mui/icons-material/Eject';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export {KeyboardArrowDownIcon,
     SearchIcon,
@@ -26,5 +27,6 @@ export {KeyboardArrowDownIcon,
     DirectionsBikeIcon,
     TimelapseIcon,
     CurrencyRupeeIcon,
-    EjectIcon
+    EjectIcon,
+    ExpandMoreIcon
 }

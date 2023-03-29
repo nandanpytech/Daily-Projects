@@ -2,7 +2,7 @@ import {React,useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant_Details } from '../utils/const'
 import Breadcrumb from './Breadcrumb'
-import MenuItem from './MenuItem'
+import ItemAccordion from './ItemAccordion'
 import RestaurantDetails from './RestaurantDetails'
 
 
@@ -22,7 +22,8 @@ function RestaurantMenu() {
     <div className="menu">
         <Breadcrumb/>
         <RestaurantDetails/>
-        <MenuItem/>
+        <ItemAccordion/>
+        <ItemAccordion/>
     </div>
  
   )
