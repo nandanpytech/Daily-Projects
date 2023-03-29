@@ -1,4 +1,4 @@
-import {React,useEffect} from 'react'
+import {React,useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant_Details } from '../utils/const'
 import Breadcrumb from './Breadcrumb'
@@ -7,12 +7,14 @@ import RestaurantDetails from './RestaurantDetails'
 
 
 function RestaurantMenu() {
+  const [MenuItems, setMenuItems] = useState([])
   const {id}=useParams()
 
   const restaurantdetails=async()=>{
     const data= await fetch(Restaurant_Details+`${id}&submitAction=ENTER`)
     const res= await data.json()
-    console.log(res)
+    // console.table(res.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards)
+    setMenuItems(res.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards)
   }
   useEffect(() => {
     restaurantdetails()
@@ -22,8 +24,14 @@ function RestaurantMenu() {
     <div className="menu">
         <Breadcrumb/>
         <RestaurantDetails/>
-        <ItemAccordion/>
-        <ItemAccordion/>
+        {
+          MenuItems.map((e,index)=>{
+            if(e.card.card.title){
+              return <ItemAccordion ItemCards={e.card.card.itemCards || e.card.card.categories} key={index} categorylength={e.card?.card?.itemCards?.length} title={e.card?.card?.title}></ItemAccordion>
+            }
+           
+          })
+        }
     </div>
  
   )

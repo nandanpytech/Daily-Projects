@@ -14,9 +14,13 @@ function Navbar() {
 const FirstStack=styled(Stack)`
     & > h4{
         text-decoration: underline;
+        font-size:.9rem;
+        font-weight: 700;
     }
     & > p{
         font-size: 0.8rem;
+        color: #686b78;
+        font-weight: 400;
     }
     &  #arrowicon{
         color:#fc8019 ;
@@ -32,8 +36,10 @@ const SecondStack=styled(Stack)`
         list-style-type: none;
         cursor: pointer;
         display: flex;
+        gap: 5px;
         align-items: center;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
     }
 
 `

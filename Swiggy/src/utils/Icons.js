@@ -13,6 +13,8 @@ import TimelapseIcon from '@mui/icons-material/Timelapse';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import EjectIcon from '@mui/icons-material/Eject';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import EastIcon from '@mui/icons-material/East';
+import WestIcon from '@mui/icons-material/West';
 
 export {KeyboardArrowDownIcon,
     SearchIcon,
@@ -28,5 +30,7 @@ export {KeyboardArrowDownIcon,
     TimelapseIcon,
     CurrencyRupeeIcon,
     EjectIcon,
-    ExpandMoreIcon
+    ExpandMoreIcon,
+    EastIcon,
+    WestIcon
 }

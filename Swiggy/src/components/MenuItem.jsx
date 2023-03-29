@@ -6,7 +6,8 @@ import { EjectIcon } from '../utils/Icons'
 
 
 
-function MenuItem() {
+function MenuItem({ItemDetails}) {
+   const {category,imageId,name}=ItemDetails
     const ItemName=styled(Stack)`
         & > h6 {
             font-weight: 700;

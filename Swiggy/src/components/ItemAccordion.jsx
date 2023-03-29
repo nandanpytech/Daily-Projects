@@ -4,7 +4,8 @@ import {Accordion,AccordionSummary,AccordionDetails,Typography} from '@mui/mater
 import { ExpandMoreIcon } from '../utils/Icons';
 
 
-function ItemAccordion() {
+function ItemAccordion({title,ItemCards,categorylength}) {
+  console.log(ItemCards);
   return (
     <>
          <Accordion >
@@ -13,12 +14,19 @@ function ItemAccordion() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                     >
-                    <Typography sx={{fontWeight:700}}>Recommended (23)</Typography>
+                    <Typography sx={{fontWeight:700}}>{title} ({categorylength})</Typography>
                  </AccordionSummary>
 
                 <AccordionDetails>
-                        <MenuItem />
-                        <MenuItem />
+                  {
+                      ItemCards?.map((element,index)=>
+                        element.itemCards?
+                          <ItemAccordion ItemCards={element.itemCards} key={index} categorylength={element.itemCards.length} title={element.title}/>
+                          :
+                          <MenuItem key={index}  ItemDetails={element.card.info}></MenuItem>
+                        )
+                   
+                  }
                 </AccordionDetails>
       </Accordion>
     </>

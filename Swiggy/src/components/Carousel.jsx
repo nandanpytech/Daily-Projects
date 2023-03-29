@@ -1,18 +1,19 @@
 import {React,useRef,useEffect,useState,useContext} from 'react'
-import { Card,CardMedia } from '../utils/Icons'
+import { Card,CardMedia,EastIcon,WestIcon } from '../utils/Icons'
 import Slider from "react-slick";
-import { Box } from '@mui/material';
+import { Box,Stack,styled } from '@mui/material';
 import { Carousel_Image_Url } from '../utils/const';
 import CarouselShimmer from './CarouselShimmer';
 import { FoodContext } from '../context/Provide';
 
 function Carousel() {
     const {setallRestaurant} = useContext(FoodContext)
+    const [showPrev, setshowPrev] = useState(false)
     const [Imagedata, setImagedata] = useState([])
     const slider = useRef(null)
     var settings = {
-        arrows: true,
-        infinite: true,
+        arrows: false,
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1
@@ -25,20 +26,39 @@ function Carousel() {
         setImagedata(Images_data.data.cards[0].data.data.cards)
    
     }
-    console.log(Imagedata)
     
 
     useEffect(() => {
         fetchImages()
     }, [])
     
+    const ArrowIcon=styled(Box)`
      
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        padding: 0 2rem;
+        top: 40%;
+
+        & > div {
+        background-color: white;
+        border-radius: 50%;
+        cursor: pointer;
+        padding: 10px;
+        }
+        
+    `
+    const Arrowclick=()=>{
+        slider?.current?.slickNext()
+        setshowPrev(true)
+    }
   return (
     <>
-    <Box sx={{marginTop:"4rem"}}>
+    <Box sx={{marginTop:"4rem",position:"relative"}}>
     {
         Imagedata.length!=0?(
-            <Box bgcolor="#282c3f" p={4}>
+            <Box  bgcolor="#282c3f" p={4}>
             {
                     <Slider  ref={slider} {...settings}>
                         {
@@ -57,6 +77,17 @@ function Carousel() {
             <CarouselShimmer/>   
         </Box>
     }
+
+    
+    <ArrowIcon>
+        <Box style={{visibility:showPrev?"visible":"hidden"}} onClick={() => slider?.current?.slickPrev()}>
+            <WestIcon/>
+        </Box>
+        <Box onClick={Arrowclick}>
+            <EastIcon/>
+        </Box>
+    </ArrowIcon>
+   
     </Box>
     
     </>
