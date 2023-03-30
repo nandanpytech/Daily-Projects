@@ -10,7 +10,6 @@ import { card_image } from '../utils/Images';
 import { Link } from 'react-router-dom';
 import ResCardShimmer from './ResCardShimmer';
 
-
 function BodyPart() {
   const {allRestaurant} = useContext(FoodContext)
   return (
@@ -18,7 +17,7 @@ function BodyPart() {
     <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>  
       {
         allRestaurant.length==0? <ResCardShimmer/>:
-        allRestaurant.map((element,index)=>{
+        allRestaurant.map((element,index)=>{ 
           return (
               <Grid  item xs={3}>
                 <Link key={index} to={`/restaurant/${element?.data?.id}/${index}`}>
