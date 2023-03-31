@@ -39,7 +39,7 @@ function RestaurantMenu() {
         {
           MenuItems.map((e,index)=>{
             if(e.card.card.title){
-              return <ItemAccordion handleOpen={handleOpen} ItemCards={e.card.card.itemCards || e.card.card.categories} key={index} categorylength={e.card?.card?.itemCards?.length} title={e.card?.card?.title}></ItemAccordion>
+              return <ItemAccordion handleOpen={handleOpen} ItemCards={e?.card?.card?.itemCards || e?.card?.card?.categories} key={index} categorylength={e?.card?.card?.itemCards?.length} title={e.card?.card?.title}></ItemAccordion>
             }
            
           })

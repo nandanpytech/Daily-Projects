@@ -36,15 +36,13 @@ function MenuItem({ItemDetails,handleOpen}) {
         background-color: white;
      }
     `
-    const addToCart=()=>{
-        console.log();
-    }
+  
   return (
    <>
        <Box mb={4}>
             <Stack display="flex" mb={4} justifyContent="space-between" direction="row">
             <ItemName>
-                <EjectIcon sx={{color:itemAttribute.vegClassifier=="VEG"?"#0f8a65":"red"}}/>
+                <EjectIcon sx={{color:itemAttribute?.vegClassifier=="VEG"?"#0f8a65":"red"}}/>
                 <Typography component="h6">
                     {name}
                 </Typography>

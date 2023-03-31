@@ -2,7 +2,6 @@ import {React,useState,useEffect} from 'react'
 import { Box,Divider,Stack,styled, Typography } from '@mui/material'
 import { StarIcon,DirectionsBikeIcon, TimelapseIcon } from '../utils/Icons'
 import { useParams } from 'react-router-dom'
-import CarouselShimmer from './CarouselShimmer'
 import ResShimmer from './ResShimmer'
 
 function RestaurantDetails() {
