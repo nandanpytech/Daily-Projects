@@ -17,7 +17,6 @@ function RestaurantDetails() {
   useEffect(() => {
     fetchRestaurantDetails()
   }, [])
-  console.log(allRestaurant);
   
 
     const Namestack=styled(Stack)`
@@ -85,8 +84,8 @@ function RestaurantDetails() {
         <Typography variant='h6' component="h6">{allRestaurant[id]?.data?.name}</Typography>
         <Box sx={{display:"flex"}}>
           {
-            allRestaurant[id].data.cuisines.map((cuisine)=>{
-            return <Typography variant='body2' component="p">{cuisine},</Typography>
+            allRestaurant[id].data.cuisines.map((cuisine,index)=>{
+            return <Typography variant='body2' key={index} component="p">{cuisine},</Typography>
             })
           }
         </Box>

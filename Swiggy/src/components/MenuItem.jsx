@@ -6,7 +6,8 @@ import { EjectIcon } from '../utils/Icons'
 
 
 
-function MenuItem({ItemDetails}) {
+function MenuItem({ItemDetails,handleOpen}) {
+
    const {category,imageId,name,defaultPrice,description,price,itemAttribute}=ItemDetails
     const ItemName=styled(Stack)`
         width: 50%;
@@ -35,6 +36,9 @@ function MenuItem({ItemDetails}) {
         background-color: white;
      }
     `
+    const addToCart=()=>{
+        console.log();
+    }
   return (
    <>
        <Box mb={4}>
@@ -59,7 +63,7 @@ function MenuItem({ItemDetails}) {
                         <CardMedia component="img" width="118px" height="96px" alt="No Image!"  image={Menu_Item_Image+imageId}/>
                     </CardActionArea>
                 </Card>
-                <Button variant='contained' > ADD </Button>
+                <Button variant='contained' onClick={()=>handleOpen(ItemDetails)} > ADD </Button>
             </ItemImage>
             </Stack>
 
