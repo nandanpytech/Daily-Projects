@@ -1,15 +1,17 @@
 import {React,useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom'
+import { pricerange } from '../utils/CalculateRange'
 import { Restaurant_Details } from '../utils/const'
 import Breadcrumb from './Breadcrumb'
 import ItemAccordion from './ItemAccordion'
-import Portion from './Portion'
+import Dailogbox from './Dailogbox'
 import RestaurantDetails from './RestaurantDetails'
 
 
 function RestaurantMenu() {
   const [MenuItems, setMenuItems] = useState([])
   const [ParticularItemdetails, setParticularItemdetails] = useState([])
+  const [priceRange, setpriceRange] = useState({})
   const [open, setOpen] = useState(false);
   const {resid}=useParams()
 
@@ -22,19 +24,12 @@ function RestaurantMenu() {
     restaurantdetails()
   }, [])
   
-  const pricerange=(ItemDetails)=>{
-    let initial,last;
-    const prices=ItemDetails?.variantsV2?.pricingModels
-    initial=prices[prices.length-1].price/100
-    last=prices[0].price/100
-    console.log(initial,last);
-  }
+  
   const handleOpen = (ItemDetails) =>{
       setOpen(true);
       setParticularItemdetails(ItemDetails)
-      pricerange(ItemDetails)
+     setpriceRange (pricerange(ItemDetails))
   }
-  // console.log(ParticularItemAddson);
     
   const handleClose = () => setOpen(false);
   return (
@@ -44,12 +39,12 @@ function RestaurantMenu() {
         {
           MenuItems.map((e,index)=>{
             if(e.card.card.title){
-              return <ItemAccordion  handleOpen={handleOpen} ItemCards={e.card.card.itemCards || e.card.card.categories} key={index} categorylength={e.card?.card?.itemCards?.length} title={e.card?.card?.title}></ItemAccordion>
+              return <ItemAccordion handleOpen={handleOpen} ItemCards={e.card.card.itemCards || e.card.card.categories} key={index} categorylength={e.card?.card?.itemCards?.length} title={e.card?.card?.title}></ItemAccordion>
             }
            
           })
         }
-        <Portion open={open} ItemDetails={ParticularItemdetails} handleClose={handleClose}/>
+        <Dailogbox priceRange={priceRange} open={open} ItemDetails={ParticularItemdetails} handleClose={handleClose}/>
     </div>
  
   )

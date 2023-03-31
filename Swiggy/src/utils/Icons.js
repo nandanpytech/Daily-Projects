@@ -15,6 +15,7 @@ import EjectIcon from '@mui/icons-material/Eject';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EastIcon from '@mui/icons-material/East';
 import WestIcon from '@mui/icons-material/West';
+import FlareIcon from '@mui/icons-material/Flare';
 
 export {KeyboardArrowDownIcon,
     SearchIcon,
@@ -32,5 +33,6 @@ export {KeyboardArrowDownIcon,
     EjectIcon,
     ExpandMoreIcon,
     EastIcon,
-    WestIcon
+    WestIcon,
+    FlareIcon
 }
