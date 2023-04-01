@@ -1,10 +1,12 @@
-import React from 'react'
+import {React,useState} from 'react'
 import { Stack,Typography,Checkbox} from '@mui/material';
 import { FlareIcon } from '../../utils/Icons';
 
 function DailogContent({ItemDetails,name}) {
     const PricingModels=["Full","Half","Quat"]
-    console.log(ItemDetails);
+    const [variant, setvariant] = useState({Portion:"",Addons:""})
+    const [subvariant, setsubvariant] = useState({})
+    // console.log(ItemDetails);
   return (
     <>
         <Stack display="flex" direction="row" mt={4} spacing={1} >
@@ -18,31 +20,16 @@ function DailogContent({ItemDetails,name}) {
 
                 {
                     ItemDetails?.map((element,index)=>{
-                        if(index==0){
-                            return (
-                                <>
-                                <Stack key={index} display="flex" direction="row" spacing={2}>
-                                      {
-                                        name=="Portion"?  <Checkbox style={{color:'#4caf50'}} defaultChecked /> :
+                      return      <Stack key={index} display="flex" direction="row" spacing={2}>
+                                        {
+                                        name=="Portion" && index==0 ?  <Checkbox style={{color:'#4caf50'}} defaultChecked /> :
                                         <Checkbox style={{color:'#4caf50'}} /> 
-                                      }
+                                        }
                                     
-                                      <Typography style={{alignSelf:"center",color:"black"}}>{element.name || PricingModels[index]}</Typography>
-                                      <Typography variant='body2' style={{alignSelf:"center"}}>₹{element?.price/100}</Typography>
-                                </Stack>
-                                </>
-                            )
-                        }else{
-                            return (
-                                <>
-                                  <Stack key={index}   display="flex" direction="row"  spacing={2}>
-                                     <Checkbox  style={{color:'#4caf50'}}/> 
-                                     <Typography style={{alignSelf:"center",color:"black"}}>{element.name || PricingModels[index]}</Typography>
-                                     <Typography variant='body2' style={{alignSelf:"center"}}>₹{element?.price/100}</Typography>
-                                </Stack>
-                                </>
-                            )
-                        }
+                                        <Typography style={{alignSelf:"center",color:"black"}}>{element.name || PricingModels[index]}</Typography>
+                                        <Typography variant='body2' style={{alignSelf:"center"}}>₹{element?.price/100}</Typography>
+                                 </Stack>                 
+                        
                     })
                 }
     </>

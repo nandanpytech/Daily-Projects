@@ -4,13 +4,10 @@ import { Typography, styled,Button,Box } from '@mui/material';
 import Dailogtitle from './DailogBox/Dailogtitle';
 import DailogContent from './DailogBox/DailogContent';
 
-
-
-
-
 function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
    const [counter, setcounter] = useState(1)
     const PricingModels=["Full","Half","Quat"]
+    console.log(ItemDetails);
 
     const NextStepButton=styled(Button)`
     width: 100%;
@@ -27,15 +24,16 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
     fontSize:".5rem",
     marginLeft:"1.9rem"
   }
+  const dailogboxclose=()=>{
+    setcounter(1)
+    handleClose()
+  }
   return (
     <div>
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
-      <DialogTitle>
+      <Dialog open={open} onClose={dailogboxclose} fullWidth maxWidth="xs">
+        <DialogTitle>
           <Dailogtitle ItemDetails={ItemDetails} priceRange={priceRange}/>
-          
         </DialogTitle>  
-
-
         <DialogContent>
             <DialogContentText>
             {counter!==1 && 
@@ -48,7 +46,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
                 counter==1?  <DailogContent name="Portion" ItemDetails={ItemDetails?.variantsV2?.pricingModels}/> 
                 : 
                 ItemDetails?.addons?.map((addons,index)=>{
-                  return  <DailogContent  name={addons?.groupName} ItemDetails={addons?.choices}/>
+                  return  <DailogContent key={index}  name={addons?.groupName} ItemDetails={addons?.choices}/>
                 })
                
               }
@@ -60,14 +58,13 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
 
         <DialogActions>
            <NextStepButton onClick={()=>setcounter(counter+1)}  variant="outlined">
-            
                 <Typography variant='body2' fontWeight={700}>{counter==1?'step 1/1':`Total ₹${420}`}</Typography>
-                <Typography variant='body2' fontWeight={700}>Continue</Typography>
+                <Typography variant='body2' fontWeight={700}>{counter==1?'Continue':`Add Item`}</Typography>
             </NextStepButton>
         </DialogActions>
       </Dialog>
         
-       {/* <ModalStep1 ItemDetails={ItemDetails} priceRange={priceRange}/> */}
+      
       
     </div>
   );

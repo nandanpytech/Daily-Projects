@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar"
 import HomeBody from "./components/HomeBody"
 import {createBrowserRouter, Outlet} from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Cart from "./components/Cart";
 
 
 function App() {
@@ -27,6 +28,11 @@ export const route=createBrowserRouter([
       {
         path: "/restaurant/:resid/:id",
         element: <RestaurantMenu/>
+       
+      },
+      {
+        path: "/cart/:id",
+        element:<Cart/>
        
       },
     ],

@@ -8,9 +8,9 @@ function CarouselShimmer() {
     <>
    <Stack display="flex" pl={4} direction="row" spacing={4}>
         {
-            arr.map((e)=>{
+            arr.map((e,index)=>{
                 return (
-                    (<Card  sx={{width:"max-content !important",backgroundColor:"#686b78"}}>
+                    (<Card key={index}  sx={{width:"max-content !important",backgroundColor:"#686b78"}}>
                         <CardMedia sx={{ height: 260, width:260 }} />
                     </Card>)
                 )

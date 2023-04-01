@@ -19,14 +19,14 @@ function BodyPart() {
         allRestaurant.length==0? <ResCardShimmer/>:
         allRestaurant.map((element,index)=>{ 
           return (
-              <Grid  item xs={3}>
-                <Link key={index} to={`/restaurant/${element?.data?.id}/${index}`}>
+              <Grid key={index} item xs={3}>
+                <Link  to={`/restaurant/${element?.data?.id}/${index}`}>
                     <Card elevation={0} sx={{ maxWidth: 245 }}>
                             <CardActionArea>
                               <CardMedia
                                 component="img"
                                 height="140"
-                                image={card_image+element?.data?.cloudinaryImageId}
+                                src={card_image+element?.data?.cloudinaryImageId}
                                 alt="green iguana"
                               />
                               <CardContent>
@@ -35,9 +35,9 @@ function BodyPart() {
                                 </Typography>
                                 <Stack flexWrap="wrap" display="flex" direction="row" spacing={.3}>
                                     {
-                                      element?.data?.cuisines.map(el=>{
+                                      element?.data?.cuisines.map((el,index)=>{
                                         return (
-                                            <Typography variant="body2" color="text.secondary">
+                                            <Typography key={index} variant="body2" color="text.secondary">
                                             {el},
                                           </Typography>
                                         )

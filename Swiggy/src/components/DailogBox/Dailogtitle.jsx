@@ -9,7 +9,12 @@ function Dailogtitle({priceRange,ItemDetails}) {
                 <EjectIcon sx={{color:"red",alignSelf:"center"}}></EjectIcon>
                 <Typography variant='h6'sx={{fontWeight:"600"}}>Customize "{ItemDetails.name}" </Typography>
             </Stack>
-            <Typography sx={{paddingLeft:"2rem"}}>₹{priceRange.initial} - ₹{priceRange.last}</Typography>
+            {
+              priceRange.initial ? <Typography sx={{paddingLeft:"2rem"}}>₹{priceRange.initial} - ₹{priceRange.last}</Typography>
+              :
+              <Typography sx={{paddingLeft:"2rem"}}>₹{priceRange}</Typography>
+            }
+          
             <Divider/>    
    </>
   )

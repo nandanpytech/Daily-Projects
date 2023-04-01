@@ -5,6 +5,7 @@ import { Box,Stack,styled } from '@mui/material';
 import { Carousel_Image_Url } from '../utils/const';
 import CarouselShimmer from './CarouselShimmer';
 import { FoodContext } from '../context/Provide';
+import { allRestaurant } from '../FetchData/RestaurantData';
 
 function Carousel() {
     const {setallRestaurant} = useContext(FoodContext)
@@ -20,14 +21,12 @@ function Carousel() {
       };
     
     async function fetchImages(){
-        const Data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&page_type=DESKTOP_WEB_LISTING")
-        const Rescards=await Data.json()
+       const Rescards=await allRestaurant()
         setallRestaurant(Rescards.data.cards[2].data.data.cards)
         setResCardDetails(Rescards.data.cards[0].data.data.cards)
    
     }
     
-
     useEffect(() => {
         fetchImages()
     }, [])
@@ -62,8 +61,8 @@ function Carousel() {
             {
                     <Slider  ref={slider} {...settings}>
                         {
-                            ResCardDetails.map((element)=>{
-                            return (<Card className='Carousel-Card' sx={{width:"max-content !important"}}>
+                            ResCardDetails.map((element,index)=>{
+                            return (<Card key={index} className='Carousel-Card' sx={{width:"max-content !important"}}>
                                         <CardMedia sx={{ height: 260, width:260 }} image={Carousel_Image_Url+"/"+element.data.creativeId}/>
                                     </Card>)
                             })

@@ -6,6 +6,7 @@ import { KeyboardArrowDownIcon,
     SupportOutlinedIcon,
     PersonOutlineOutlinedIcon,
     ShoppingBagOutlinedIcon} from '../utils/Icons'
+import { Link } from 'react-router-dom'
 
 
 
@@ -32,7 +33,7 @@ const FirstStack=styled(Stack)`
 const SecondStack=styled(Stack)`
     margin-left: auto !important;
     margin-right: 1rem  !important;
-    & > li{
+    & > a > li{
         list-style-type: none;
         cursor: pointer;
         display: flex;
@@ -40,6 +41,7 @@ const SecondStack=styled(Stack)`
         align-items: center;
         font-size: 0.9rem;
         font-weight: 500;
+        color: black;
     }
 
 `
@@ -52,25 +54,43 @@ const SecondStack=styled(Stack)`
             </Typography>
             <Typography>
                 Bengalurru,Karnatak,India 
-             
             </Typography>
             <KeyboardArrowDownIcon id="arrowicon"/>
         </FirstStack>
 
         <SecondStack  display="flex" alignItems="center" spacing={8} direction="row">
+                 <Link>
+                    <li className="nav-list-item">
+                    <SearchIcon/> Search
+                    </li>
+                </Link> 
+
+                <Link>
+                    <li className="nav-list-item">
+                    <DiscountOutlinedIcon/> 
+                    Offers
+                    </li>
+                </Link>
+                
+                <Link>
+                    <li className="nav-list-item">
+                    <SupportOutlinedIcon/> Help
+                    </li>
+                </Link>
+              
+              <Link>
                 <li className="nav-list-item">
-                   <SearchIcon/> Search
+                    <PersonOutlineOutlinedIcon/> Nandan
                 </li>
-                <li className="nav-list-item">
-                   <DiscountOutlinedIcon/> 
-                   Offers
-                </li>
-                <li className="nav-list-item">
-                   <SupportOutlinedIcon/> Help</li>
-                <li className="nav-list-item">
-                   <PersonOutlineOutlinedIcon/> Nandan</li>
-                <li className="nav-list-item">
-                   <ShoppingBagOutlinedIcon/> Cart</li>
+              </Link>
+               
+
+                <Link to="/cart/2">
+                    <li className="nav-list-item">
+                    <ShoppingBagOutlinedIcon/> Cart
+                    </li>
+                </Link>   
+               
         </SecondStack>
           
     </Stack>

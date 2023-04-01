@@ -8,7 +8,7 @@ import { EjectIcon } from '../utils/Icons'
 
 function MenuItem({ItemDetails,handleOpen}) {
 
-   const {category,imageId,name,defaultPrice,description,price,itemAttribute}=ItemDetails
+   const {imageId,name,defaultPrice,description,price,itemAttribute}=ItemDetails
     const ItemName=styled(Stack)`
         width: 50%;
         & > h6 {

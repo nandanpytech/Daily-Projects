@@ -7,8 +7,8 @@ function ResCardShimmer() {
     <>
     <Stack padding={5} display="flex" direction="row" spacing={10} style={{flexWrap:"wrap"}}>
         {
-              arry.map((element)=>{
-               return <Box>
+              arry.map((element,index)=>{
+               return <Box key={index}>
                         <Skeleton variant="rectangular" width={210} height={118} />
                         <Skeleton  width="80%"/>
                         <Skeleton width="60%" />

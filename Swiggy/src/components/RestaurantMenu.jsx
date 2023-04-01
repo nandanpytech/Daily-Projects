@@ -1,27 +1,22 @@
 import {React,useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { pricerange } from '../utils/CalculateRange'
-import { Restaurant_Details } from '../utils/const'
 import Breadcrumb from './Breadcrumb'
 import ItemAccordion from './ItemAccordion'
 import Dailogbox from './Dailogbox'
 import RestaurantDetails from './RestaurantDetails'
-
+import { Particularrestaurantdetails } from '../FetchData/RestaurantData'
 
 function RestaurantMenu() {
   const [MenuItems, setMenuItems] = useState([])
   const [ParticularItemdetails, setParticularItemdetails] = useState([])
-  const [priceRange, setpriceRange] = useState({})
+  const [priceRange, setpriceRange] = useState()
   const [open, setOpen] = useState(false);
   const {resid}=useParams()
-
-  const restaurantdetails=async()=>{
-    const data= await fetch(Restaurant_Details+`${resid}&submitAction=ENTER`)
-    const res= await data.json()
+ 
+  useEffect(async() => {
+    const res=await Particularrestaurantdetails(resid)
     setMenuItems(res.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards)
-  }
-  useEffect(() => {
-    restaurantdetails()
   }, [])
   
   
