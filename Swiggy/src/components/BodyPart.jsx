@@ -10,8 +10,8 @@ import { card_image } from '../utils/Images';
 import { Link } from 'react-router-dom';
 import ResCardShimmer from './ResCardShimmer';
 
-function BodyPart() {
-  const {allRestaurant} = useContext(FoodContext)
+function BodyPart({allRestaurant}) {
+  console.log(allRestaurant);
   return (
     <>
     <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>  

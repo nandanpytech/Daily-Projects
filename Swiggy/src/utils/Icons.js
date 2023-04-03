@@ -16,7 +16,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EastIcon from '@mui/icons-material/East';
 import WestIcon from '@mui/icons-material/West';
 import FlareIcon from '@mui/icons-material/Flare';
-
+import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
 export {KeyboardArrowDownIcon,
     SearchIcon,
     DiscountOutlinedIcon,
@@ -34,5 +34,5 @@ export {KeyboardArrowDownIcon,
     ExpandMoreIcon,
     EastIcon,
     WestIcon,
-    FlareIcon
+    FlareIcon,ModeStandbyIcon
 }

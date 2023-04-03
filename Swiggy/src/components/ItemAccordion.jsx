@@ -4,10 +4,8 @@ import {Accordion,AccordionSummary,AccordionDetails,Typography} from '@mui/mater
 import { ExpandMoreIcon } from '../utils/Icons';
 
 
-function ItemAccordion({title,ItemCards,categorylength,handleOpen}) {
+function ItemAccordion({title,ItemCards,categorylength}) {
   const [expanded, setExpanded] =useState("panel1")
-
-
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
@@ -29,9 +27,8 @@ function ItemAccordion({title,ItemCards,categorylength,handleOpen}) {
                         element.itemCards?
                           <ItemAccordion ItemCards={element.itemCards} key={index} categorylength={element.itemCards.length} title={element.title}/>
                           :
-                          <MenuItem key={index} open={open} handleOpen={handleOpen}  ItemDetails={element.card.info}></MenuItem>
+                          <MenuItem key={index}  ItemDetails={element.card.info}></MenuItem>
                         )
-                   
                   }
                 </AccordionDetails>
       </Accordion>

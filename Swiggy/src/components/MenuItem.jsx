@@ -1,14 +1,27 @@
 import { Card, CardActionArea, CardMedia,Box, styled, Typography, Button, Divider } from '@mui/material'
 import { Stack } from '@mui/system'
-import React from 'react'
+import {React,useState} from 'react'
 import { Menu_Item_Image } from '../utils/const'
 import { EjectIcon } from '../utils/Icons'
+import Dailogbox from './Dailogbox'
+import { pricerange } from '../utils/CalculateRange'
 
 
 
-function MenuItem({ItemDetails,handleOpen}) {
-
+function MenuItem({ItemDetails}) {
    const {imageId,name,defaultPrice,description,price,itemAttribute}=ItemDetails
+   const [priceRange, setpriceRange] = useState({initial:"",last:""})
+   const [ParticularItemdetails, setParticularItemdetails] = useState([])
+   const [open, setOpen] = useState(false);
+
+   const handleOpen=(ItemDetails)=>{
+    setOpen(true)
+    setParticularItemdetails(ItemDetails)
+    setpriceRange (pricerange(ItemDetails))
+   }
+
+   const handleClose = () => setOpen(false);
+
     const ItemName=styled(Stack)`
         width: 50%;
         & > h6 {
@@ -67,6 +80,8 @@ function MenuItem({ItemDetails,handleOpen}) {
 
             <Divider/>
        </Box>
+
+       <Dailogbox priceRange={priceRange} open={open} ItemDetails={ParticularItemdetails} handleClose={handleClose}></Dailogbox>
    </>
   )
 }

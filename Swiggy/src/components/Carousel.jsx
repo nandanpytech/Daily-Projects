@@ -1,16 +1,14 @@
-import {React,useRef,useEffect,useState,useContext} from 'react'
+import {React,useRef,useState} from 'react'
 import { Card,CardMedia,EastIcon,WestIcon } from '../utils/Icons'
 import Slider from "react-slick";
-import { Box,Stack,styled } from '@mui/material';
+import { Box,styled } from '@mui/material';
 import { Carousel_Image_Url } from '../utils/const';
 import CarouselShimmer from './CarouselShimmer';
-import { FoodContext } from '../context/Provide';
-import { allRestaurant } from '../FetchData/RestaurantData';
 
-function Carousel() {
-    const {setallRestaurant} = useContext(FoodContext)
+
+function Carousel({CaroCard}) {
     const [showPrev, setshowPrev] = useState(false)
-    const [ResCardDetails, setResCardDetails] = useState([])
+
     const slider = useRef(null)
     var settings = {
         arrows: false,
@@ -19,17 +17,6 @@ function Carousel() {
         slidesToShow: 4,
         slidesToScroll: 1
       };
-    
-    async function fetchImages(){
-       const Rescards=await allRestaurant()
-        setallRestaurant(Rescards.data.cards[2].data.data.cards)
-        setResCardDetails(Rescards.data.cards[0].data.data.cards)
-   
-    }
-    
-    useEffect(() => {
-        fetchImages()
-    }, [])
     
     const ArrowIcon=styled(Box)`
      
@@ -56,12 +43,12 @@ function Carousel() {
     <>
     <Box sx={{marginTop:"4rem",position:"relative"}}>
     {
-        ResCardDetails.length!=0?(
+        CaroCard.length!=0?(
             <Box  bgcolor="#282c3f" p={4}>
             {
                     <Slider  ref={slider} {...settings}>
                         {
-                            ResCardDetails.map((element,index)=>{
+                            CaroCard.map((element,index)=>{
                             return (<Card key={index} className='Carousel-Card' sx={{width:"max-content !important"}}>
                                         <CardMedia sx={{ height: 260, width:260 }} image={Carousel_Image_Url+"/"+element.data.creativeId}/>
                                     </Card>)

@@ -1,16 +1,21 @@
 import Navbar from "./components/Navbar"
-import HomeBody from "./components/HomeBody"
+import Home from "./components/Home"
 import {createBrowserRouter, Outlet} from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
+import { Provider } from 'react-redux'
+import store from "./Store/store";
 
 
 function App() {
 
   return (
     <div className="App">
-        <Navbar/>
-        <Outlet/>
+      <Provider store={store}>
+          <Navbar/>
+          <Outlet/>
+      </Provider>
+      
     </div>
   )
 }
@@ -22,7 +27,7 @@ export const route=createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomeBody/>
+        element: <Home/>
        
       },
       {

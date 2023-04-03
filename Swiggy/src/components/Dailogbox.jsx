@@ -3,11 +3,17 @@ import {Dialog,DialogTitle,DialogContent,DialogActions, DialogContentText } from
 import { Typography, styled,Button,Box } from '@mui/material';
 import Dailogtitle from './DailogBox/Dailogtitle';
 import DailogContent from './DailogBox/DailogContent';
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem } from '../ReduxSlice/Cartslice';
 
 function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
-   const [counter, setcounter] = useState(1)
-    const PricingModels=["Full","Half","Quat"]
-    console.log(ItemDetails);
+  const dispatch=useDispatch()
+  const cartItems=useSelector(store=>store.cart)
+
+
+  const [counter, setcounter] = useState(1)
+  const PricingModels=["Full","Half","Quat"]
+    // console.log(ItemDetails);
 
     const NextStepButton=styled(Button)`
     width: 100%;
@@ -28,12 +34,31 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
     setcounter(1)
     handleClose()
   }
+
+
+  const HandleModalButton=(counter)=>{
+    if(counter==1){
+      setcounter(prev=>prev+1)
+    }else{
+      dailogboxclose()
+    }
+  }
+
+
+  const handleOrderedItem=(OrderedItem)=>{
+    if(cartItems.ResId==""){
+      dispatch(addItem({OrderedItem,resid}))
+    }
+    dailogboxclose()
+  }
   return (
     <div>
       <Dialog open={open} onClose={dailogboxclose} fullWidth maxWidth="xs">
         <DialogTitle>
           <Dailogtitle ItemDetails={ItemDetails} priceRange={priceRange}/>
         </DialogTitle>  
+
+
         <DialogContent>
             <DialogContentText>
             {counter!==1 && 
@@ -41,7 +66,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
                   <Typography variant='body1' color="black" ml={4} fontWeight={600}>Portion</Typography>
                   <Button variant='outlined' style={change} onClick={()=>setcounter((prev)=>prev-1)}>Change</Button>
               </Box>
-          }
+             }
               {
                 counter==1?  <DailogContent name="Portion" ItemDetails={ItemDetails?.variantsV2?.pricingModels}/> 
                 : 
@@ -50,17 +75,24 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
                 })
                
               }
-             
             </DialogContentText>
         </DialogContent>
 
-
-
-        <DialogActions>
-           <NextStepButton onClick={()=>setcounter(counter+1)}  variant="outlined">
-                <Typography variant='body2' fontWeight={700}>{counter==1?'step 1/1':`Total ₹${420}`}</Typography>
-                <Typography variant='body2' fontWeight={700}>{counter==1?'Continue':`Add Item`}</Typography>
-            </NextStepButton>
+        <DialogActions> 
+            {
+              counter==1?
+                 <NextStepButton onClick={()=>HandleModalButton(counter)}  variant="outlined">
+                      <Typography variant='body2' fontWeight={700}>step 1/1'</Typography>
+                      <Typography variant='body2' fontWeight={700}>Continue</Typography>
+                  </NextStepButton>
+           
+              :
+              <NextStepButton onClick={()=>handleOrderedItem(ItemDetails)}  variant="outlined">
+                 <Typography variant='body2' fontWeight={700}>{`Total ₹${420}`}</Typography>
+                 <Typography variant='body2' fontWeight={700}>Add Item</Typography>
+              </NextStepButton>
+             
+            }
         </DialogActions>
       </Dialog>
         

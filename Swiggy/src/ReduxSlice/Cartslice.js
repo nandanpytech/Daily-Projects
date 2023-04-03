@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartslice=createSlice({
     name:"cart",
     initialState:{
-        items:[]
+        CartItems:[],
+        RestaurantDetils:[]
     },
     reducers:{
         addItem:(state,action)=>{
-            state.items.push(action.payload)
+            const orderedItem=action.payload.OrderedItem
+            state.CartItems.push(orderedItem)
         }
     }
 })

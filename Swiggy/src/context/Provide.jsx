@@ -1,12 +1,12 @@
-import {React} from 'react'
-import { createContext,useState } from 'react'
+import {React, useState} from 'react'
+import { createContext } from 'react'
 export const FoodContext = createContext(null)
 
 function Provide({children}) {
-    const [allRestaurant, setallRestaurant] = useState([])
+  const [ParticularRes, setParticularRes] = useState([])
   return (
     <>
-    <FoodContext.Provider value={{setallRestaurant,allRestaurant}}>
+    <FoodContext.Provider value={{ParticularRes,setParticularRes}}>
         {children}
     </FoodContext.Provider>
     
