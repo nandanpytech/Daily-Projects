@@ -11,7 +11,8 @@ function RestaurantDetails({Allrestaurant}) {
   const {setParticularRes}=useContext(FoodContext)
   useEffect(()=>{
     setParticularRes(Allrestaurant[id])
-  },[])
+  },[Allrestaurant])
+  
     const Namestack=styled(Stack)`
     & > div{
       & > h6{
