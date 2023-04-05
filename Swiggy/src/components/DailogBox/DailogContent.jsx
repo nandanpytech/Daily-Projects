@@ -4,7 +4,7 @@ import { FlareIcon } from '../../utils/Icons';
 
 function DailogContent({ItemDetails,name,setbilling}) {
     const PricingModels=["Full","Half","Quat"]  
-    // console.log(bill);
+
 
     const checkboxhandling=(e)=>{
       if(e.target.checked){

@@ -3,9 +3,11 @@ import {Dialog,DialogTitle,DialogContent,DialogActions, DialogContentText } from
 import { Typography, styled,Button,Box } from '@mui/material';
 import Dailogtitle from './DailogBox/Dailogtitle';
 import DailogContent from './DailogBox/DailogContent';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addItem } from '../ReduxSlice/Cartslice';
 import { FoodContext } from '../context/Provide';
+import Toast from './Toast';
+
 
 function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
   const dispatch=useDispatch()
@@ -13,8 +15,9 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
   // const cartItems=useSelector(store=>store.cart)
  
 
-
+  console.log("hi");
   const [counter, setcounter] = useState(1)
+  const [isToastOpen, setisToastOpen] = useState(false)
   const [bill, setbill] = useState({
   })
 
@@ -46,15 +49,33 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
       setcounter(prev=>prev+1)
     }else{
       dailogboxclose()
+      
     }
   }
-
-
 
   const handleOrderedItem=(OrderedItem,addons)=>{
     dispatch(addItem({OrderedItem,ParticularRes,addons}))
     dailogboxclose()
+    setisToastOpen(true)
   }
+
+  useEffect(() => {
+    if(isToastOpen){
+      const ref=setTimeout(() => {
+        setisToastOpen(false)
+      }, 2000);
+
+      return () => {
+        clearInterval(ref)
+      }
+    }
+  
+   
+  }, [isToastOpen])
+  
+ 
+
+
 
     const NextStepButton=styled(Button)`
     width: 100%;
@@ -71,6 +92,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
     fontSize:".5rem",
     marginLeft:"1.9rem"
   }
+
 
  
   return (
@@ -119,7 +141,9 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
       </Dialog>
         
       
-      
+      {/* Toast */}
+      <Toast isToastOpen={isToastOpen} ></Toast>
+            
     </div>
   );
 

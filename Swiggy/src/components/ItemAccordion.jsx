@@ -9,7 +9,6 @@ function ItemAccordion({title,ItemCards,categorylength}) {
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-
   return (
     <>
          <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>

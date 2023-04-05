@@ -3,16 +3,18 @@ import {Box, Button, ButtonGroup, Divider, Stack,Typography } from '@mui/materia
 import { card_image } from '../utils/Images';
 import styled from '@emotion/styled';
 import { ModeStandbyIcon } from '../utils/Icons';
+import { useSelector } from 'react-redux';
 
 
 
 function Cart() {
+  const cartItems=useSelector(store=>store.cart)
+  console.log(cartItems);
     const MainStack=styled(Stack)`
         max-width:350px;
         background-color:white;
 
     `
-
     const Btngroup=styled(ButtonGroup)`
     & > button{
         color:"#60b246 !important"
