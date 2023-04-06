@@ -55,3 +55,7 @@ a{
 .Carousel-Card:hover{
     transform: scale(1.05);
 }
+
+.css-1lep0av-MuiPaper-root-MuiAlert-root{
+    width: 70% !important;
+}

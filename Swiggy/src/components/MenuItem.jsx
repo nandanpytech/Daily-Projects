@@ -18,6 +18,12 @@ function MenuItem({ItemDetails}) {
     setOpen(true)
     setParticularItemdetails(ItemDetails)
     setpriceRange (pricerange(ItemDetails))
+
+    orderitemdirectly(ItemDetails)
+   }
+
+   const orderitemdirectly=(ItemDetails)=>{
+    
    }
 
    const handleClose = () => setOpen(false);
@@ -77,7 +83,6 @@ function MenuItem({ItemDetails}) {
                 <Button variant='contained' onClick={()=>handleOpen(ItemDetails)} > ADD </Button>
             </ItemImage>
             </Stack>
-
             <Divider/>
        </Box>
 

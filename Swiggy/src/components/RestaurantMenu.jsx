@@ -34,7 +34,7 @@ function RestaurantMenu() {
  
   
   return (
-    <div className="menu">
+    <div className="menu" style={{position:"relative"}}>
         <Breadcrumb/>
         <RestaurantDetails Allrestaurant={Allrestaurant}/>
         {

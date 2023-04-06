@@ -12,10 +12,8 @@ import Toast from './Toast';
 function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
   const dispatch=useDispatch()
   const {ParticularRes}=useContext(FoodContext)
-  // const cartItems=useSelector(store=>store.cart)
- 
 
-  console.log("hi");
+ 
   const [counter, setcounter] = useState(1)
   const [isToastOpen, setisToastOpen] = useState(false)
   const [bill, setbill] = useState({
@@ -69,8 +67,6 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
         clearInterval(ref)
       }
     }
-  
-   
   }, [isToastOpen])
   
  
@@ -112,10 +108,10 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
               </Box>
              }
               {
-                counter==1?  <DailogContent setbilling={setbilling} name="Portion" ItemDetails={ItemDetails?.variantsV2?.pricingModels}/> 
+                counter==1? <DailogContent  setbilling={setbilling} name="Portion" ItemDetails={ItemDetails?.variantsV2?.pricingModels}/> 
                 : 
                 ItemDetails?.addons?.map((addons,index)=>{
-                  return  <DailogContent setbilling={setbilling} key={index}  name={addons?.groupName} ItemDetails={addons?.choices}/>
+                  return  <DailogContent setbilling={setbilling}  key={index}  name={addons?.groupName} ItemDetails={addons?.choices}/>
                 })
                
               }
@@ -142,7 +138,9 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
         
       
       {/* Toast */}
-      <Toast isToastOpen={isToastOpen} ></Toast>
+     {
+      isToastOpen &&<Toast isToastOpen={isToastOpen} ></Toast>
+     } 
             
     </div>
   );
