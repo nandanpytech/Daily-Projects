@@ -16,12 +16,13 @@ function Toast({isToastOpen}) {
         horizontal: 'center',
     }
     const {vertical,horizontal}=state
+    // console.log("hi");
   return (
     <>
          <Snackbar
          style={{width:"60%"}}
         anchorOrigin={{vertical,horizontal}}
-        open={isToastOpen}
+        open={true}
         // onClose={!isToastOpen}
         message=""
         key={vertical + horizontal}

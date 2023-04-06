@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 function Cart() {
   const cartItems=useSelector(store=>store.cart)
   console.log(cartItems);
+  console.log(cartItems);
     const MainStack=styled(Stack)`
         max-width:350px;
         background-color:white;

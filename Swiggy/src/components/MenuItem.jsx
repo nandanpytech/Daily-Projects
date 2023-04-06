@@ -1,10 +1,13 @@
 import { Card, CardActionArea, CardMedia,Box, styled, Typography, Button, Divider } from '@mui/material'
 import { Stack } from '@mui/system'
-import {React,useState} from 'react'
+import {React,useContext,useState} from 'react'
 import { Menu_Item_Image } from '../utils/const'
 import { EjectIcon } from '../utils/Icons'
 import Dailogbox from './Dailogbox'
 import { pricerange } from '../utils/CalculateRange'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../ReduxSlice/Cartslice'
+import { FoodContext } from '../context/Provide'
 
 
 
@@ -14,16 +17,24 @@ function MenuItem({ItemDetails}) {
    const [ParticularItemdetails, setParticularItemdetails] = useState([])
    const [open, setOpen] = useState(false);
 
+
+   const dispatch=useDispatch()
+   const {ParticularRes}=useContext(FoodContext)
+
    const handleOpen=(ItemDetails)=>{
-    setOpen(true)
+    orderitemdirectly(ItemDetails)
     setParticularItemdetails(ItemDetails)
     setpriceRange (pricerange(ItemDetails))
-
-    orderitemdirectly(ItemDetails)
+    
    }
 
    const orderitemdirectly=(ItemDetails)=>{
-    
+        if(!(ItemDetails?.variantsV2?.pricingModels) && !( ItemDetails?.addons)){  
+            dispatch(addItem(ItemDetails,ParticularRes,{}))
+        
+        }else{
+            setOpen(true)
+        }
    }
 
    const handleClose = () => setOpen(false);
@@ -86,7 +97,10 @@ function MenuItem({ItemDetails}) {
             <Divider/>
        </Box>
 
-       <Dailogbox priceRange={priceRange} open={open} ItemDetails={ParticularItemdetails} handleClose={handleClose}></Dailogbox>
+       {
+        open &&
+        <Dailogbox priceRange={priceRange}  open={open} ItemDetails={ParticularItemdetails} handleClose={handleClose}></Dailogbox>
+       }
    </>
   )
 }

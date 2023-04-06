@@ -12,10 +12,11 @@ import Toast from './Toast';
 function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
   const dispatch=useDispatch()
   const {ParticularRes}=useContext(FoodContext)
-
+  const [isToastOpen, setisToastOpen] = useState(false)
+  
  
   const [counter, setcounter] = useState(1)
-  const [isToastOpen, setisToastOpen] = useState(false)
+  
   const [bill, setbill] = useState({
   })
 
@@ -54,7 +55,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
   const handleOrderedItem=(OrderedItem,addons)=>{
     dispatch(addItem({OrderedItem,ParticularRes,addons}))
     dailogboxclose()
-    setisToastOpen(true)
+   
   }
 
   useEffect(() => {
@@ -88,7 +89,6 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
     fontSize:".5rem",
     marginLeft:"1.9rem"
   }
-
 
  
   return (
@@ -139,7 +139,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
       
       {/* Toast */}
      {
-      isToastOpen &&<Toast isToastOpen={isToastOpen} ></Toast>
+      <Toast  ></Toast>
      } 
             
     </div>
