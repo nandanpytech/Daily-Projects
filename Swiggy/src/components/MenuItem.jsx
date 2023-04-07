@@ -1,6 +1,6 @@
 import { Card, CardActionArea, CardMedia,Box, styled, Typography, Button, Divider } from '@mui/material'
 import { Stack } from '@mui/system'
-import {React,useContext,useState} from 'react'
+import {React,useContext,useState,useEffect} from 'react'
 import { Menu_Item_Image } from '../utils/const'
 import { EjectIcon } from '../utils/Icons'
 import Dailogbox from './Dailogbox'
@@ -8,6 +8,7 @@ import { pricerange } from '../utils/CalculateRange'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../ReduxSlice/Cartslice'
 import { FoodContext } from '../context/Provide'
+import Toast from './Toast';
 
 
 
@@ -16,28 +17,45 @@ function MenuItem({ItemDetails}) {
    const [priceRange, setpriceRange] = useState({initial:"",last:""})
    const [ParticularItemdetails, setParticularItemdetails] = useState([])
    const [open, setOpen] = useState(false);
+   const [isToastOpen, setisToastOpen] = useState(false)
 
-
-   const dispatch=useDispatch()
    const {ParticularRes}=useContext(FoodContext)
+   const dispatch=useDispatch()
 
    const handleOpen=(ItemDetails)=>{
     orderitemdirectly(ItemDetails)
     setParticularItemdetails(ItemDetails)
-    setpriceRange (pricerange(ItemDetails))
-    
+    setpriceRange (pricerange(ItemDetails)) 
    }
 
-   const orderitemdirectly=(ItemDetails)=>{
-        if(!(ItemDetails?.variantsV2?.pricingModels) && !( ItemDetails?.addons)){  
-            dispatch(addItem(ItemDetails,ParticularRes,{}))
-        
+   const orderitemdirectly=(OrderedItem,addons)=>{
+        if(!(OrderedItem?.variantsV2?.pricingModels) && !( OrderedItem?.addons)){  
+            dispatch(addItem({OrderedItem,ParticularRes,addons}))
+            setisToastOpen(true)
         }else{
             setOpen(true)
         }
    }
 
    const handleClose = () => setOpen(false);
+
+   const opentoast=()=>{
+    setisToastOpen(true)
+   }
+
+   useEffect(() => {
+    if(isToastOpen){
+      const ref=setTimeout(() => {
+        setisToastOpen(false)
+      }, 2000);
+
+      return () => {
+        clearInterval(ref)
+      }
+
+    }
+  }, [isToastOpen])
+  
 
     const ItemName=styled(Stack)`
         width: 50%;
@@ -91,7 +109,7 @@ function MenuItem({ItemDetails}) {
                         <CardMedia component="img" width="118px" height="96px" alt="No Image!"  image={Menu_Item_Image+imageId}/>
                     </CardActionArea>
                 </Card>
-                <Button variant='contained' onClick={()=>handleOpen(ItemDetails)} > ADD </Button>
+                <Button variant='contained' onClick={()=>handleOpen(ItemDetails,{})} > ADD </Button>
             </ItemImage>
             </Stack>
             <Divider/>
@@ -99,8 +117,14 @@ function MenuItem({ItemDetails}) {
 
        {
         open &&
-        <Dailogbox priceRange={priceRange}  open={open} ItemDetails={ParticularItemdetails} handleClose={handleClose}></Dailogbox>
+        <Dailogbox opentoast={opentoast} priceRange={priceRange}  open={open} ItemDetails={ParticularItemdetails} handleClose={handleClose}></Dailogbox>
        }
+
+        {/* Toast */}
+        {
+         isToastOpen &&
+           <Toast  ></Toast>
+        } 
    </>
   )
 }

@@ -6,13 +6,13 @@ import DailogContent from './DailogBox/DailogContent';
 import { useDispatch } from 'react-redux'
 import { addItem } from '../ReduxSlice/Cartslice';
 import { FoodContext } from '../context/Provide';
-import Toast from './Toast';
 
 
-function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
+
+function Dailogbox({open,handleClose,ItemDetails,priceRange,opentoast}) {
   const dispatch=useDispatch()
   const {ParticularRes}=useContext(FoodContext)
-  const [isToastOpen, setisToastOpen] = useState(false)
+
   
  
   const [counter, setcounter] = useState(1)
@@ -54,23 +54,12 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
 
   const handleOrderedItem=(OrderedItem,addons)=>{
     dispatch(addItem({OrderedItem,ParticularRes,addons}))
+    opentoast()
     dailogboxclose()
-   
+  
   }
 
-  useEffect(() => {
-    if(isToastOpen){
-      const ref=setTimeout(() => {
-        setisToastOpen(false)
-      }, 2000);
-
-      return () => {
-        clearInterval(ref)
-      }
-      
-    }
-  }, [isToastOpen])
-  
+ 
  
 
 
@@ -138,10 +127,8 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
       </Dialog>
         
       
-      {/* Toast */}
-     {
-      <Toast  ></Toast>
-     } 
+  
+     
             
     </div>
   );
