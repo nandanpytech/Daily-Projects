@@ -67,6 +67,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange}) {
       return () => {
         clearInterval(ref)
       }
+      
     }
   }, [isToastOpen])
   
