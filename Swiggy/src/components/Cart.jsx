@@ -70,12 +70,12 @@ function Cart() {
                             <Typography whiteSpace="normal" minWidth="144px"  fontSize={12} >{element?.OrderedItem?.name}</Typography>
                             <Typography fontSize={8}>Customizze</Typography>
                         </Stack>
-                          <Btngroup  style={{color:"#60b246"}} variant='outlined'>
+                          <Btngroup  style={{color:"#60b246",alignSelf:"center"}} variant='outlined'>
                               <Button>-</Button>
                               <Button >1</Button>
                               <Button>+</Button>
                           </Btngroup>
-                          <Typography fontSize={12} style={{alignSelf:"center", marginLeft:"auto !important"}}> ₹99</Typography>
+                          <Typography fontSize={12} style={{alignSelf:"center", marginLeft:"auto !important"}}> ₹{element?.amount}</Typography>
                        </Stack>
                     )
                   })

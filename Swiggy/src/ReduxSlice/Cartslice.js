@@ -12,9 +12,7 @@ const cartslice=createSlice({
             const {OrderedItem,ParticularRes,addons,addonsamount}=action.payload
 
             if(PrevRes.length==0){
-                console.log(addonsamount);
                 const amount=addonsamount || OrderedItem.price/100 
-                console.log(amount);
                 state.CartItems.RestaurantDetails.push(ParticularRes)
                 state.CartItems.ResturantOrderedItems.push( {OrderedItem,addons, amount})
             }else{

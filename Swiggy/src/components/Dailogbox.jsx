@@ -24,7 +24,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange,opentoast}) {
       let selectedstack=e.target.parentNode.parentNode.childNodes
       let name_of_selected=selectedstack[1].innerHTML
       let price_of_selected=selectedstack[2].innerHTML
-      setaddonsamount(prev=>prev+price_of_selected)
+      setaddonsamount(prev=>prev+ parseInt(price_of_selected.slice(1)))
       if(!bill[name]){
          setbill({...bill,[name]:[{"name_of_selected":name_of_selected,"price_of_selected":price_of_selected}]})
       }else{
