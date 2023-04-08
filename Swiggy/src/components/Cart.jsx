@@ -12,7 +12,7 @@ function Cart() {
   const Resname=cartItems?.RestaurantDetails[0]?.data?.name
   const Resarea=cartItems?.RestaurantDetails[0]?.data?.area
 
-  console.log(cartItems.ResturantOrderedItems);
+  // console.log(cartItems.ResturantOrderedItems);
 
 
   const MainStack=styled(Stack)`
