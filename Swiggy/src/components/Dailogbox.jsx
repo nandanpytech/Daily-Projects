@@ -16,15 +16,15 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange,opentoast}) {
   
  
   const [counter, setcounter] = useState(1)
-  
-  const [bill, setbill] = useState({
-  })
+  const [addonsamount, setaddonsamount] = useState(0)
+  const [bill, setbill] = useState({})
 
   const setbilling=(e,name)=>{
     if(e.target.checked){
       let selectedstack=e.target.parentNode.parentNode.childNodes
       let name_of_selected=selectedstack[1].innerHTML
       let price_of_selected=selectedstack[2].innerHTML
+      setaddonsamount(prev=>prev+price_of_selected)
       if(!bill[name]){
          setbill({...bill,[name]:[{"name_of_selected":name_of_selected,"price_of_selected":price_of_selected}]})
       }else{
@@ -33,7 +33,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange,opentoast}) {
       }
     }
   }
-  // console.log(bill);
+  console.log(bill);
 
 
  
@@ -53,7 +53,7 @@ function Dailogbox({open,handleClose,ItemDetails,priceRange,opentoast}) {
   }
 
   const handleOrderedItem=(OrderedItem,addons)=>{
-    dispatch(addItem({OrderedItem,ParticularRes,addons}))
+    dispatch(addItem({OrderedItem,ParticularRes,addons,addonsamount}))
     opentoast()
     dailogboxclose()
   

@@ -12,7 +12,7 @@ function Cart() {
   const Resname=cartItems?.RestaurantDetails[0]?.data?.name
   const Resarea=cartItems?.RestaurantDetails[0]?.data?.area
 
-  // console.log(cartItems.ResturantOrderedItems);
+  console.log(cartItems.ResturantOrderedItems);
 
 
   const MainStack=styled(Stack)`
@@ -67,7 +67,7 @@ function Cart() {
                       <Stack mb={4} display="flex" spacing={2} direction="row">
                         <ModeStandbyIcon sx={{color:'#60b246',fontSize:"1rem"}}></ModeStandbyIcon>
                         <Stack display="flex">
-                            <Typography whiteSpace="normal"  fontSize={12} >{element?.OrderedItem?.name}</Typography>
+                            <Typography whiteSpace="normal" minWidth="144px"  fontSize={12} >{element?.OrderedItem?.name}</Typography>
                             <Typography fontSize={8}>Customizze</Typography>
                         </Stack>
                           <Btngroup  style={{color:"#60b246"}} variant='outlined'>
@@ -89,7 +89,7 @@ function Cart() {
                          </Box>
                          <Box>
                            <Typography  fontSize={12}  component='h2'  variant='body1'>Delivery Fee | 7.5 kms</Typography>
-                           <Typography fontSize={12} > ₹924</Typography>
+                           <Typography fontSize={12} > ₹24</Typography>
                          </Box>
                          <Divider></Divider>
                          <Box>

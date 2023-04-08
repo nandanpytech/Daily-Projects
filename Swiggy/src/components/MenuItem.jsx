@@ -28,9 +28,9 @@ function MenuItem({ItemDetails}) {
     setpriceRange (pricerange(ItemDetails)) 
    }
 
-   const orderitemdirectly=(OrderedItem,addons)=>{
+   const orderitemdirectly=(OrderedItem,addons,addonsamount)=>{
         if(!(OrderedItem?.variantsV2?.pricingModels) && !( OrderedItem?.addons)){  
-            dispatch(addItem({OrderedItem,ParticularRes,addons}))
+            dispatch(addItem({OrderedItem,ParticularRes,addons,addonsamount}))
             setisToastOpen(true)
         }else{
             setOpen(true)
@@ -109,7 +109,7 @@ function MenuItem({ItemDetails}) {
                         <CardMedia component="img" width="118px" height="96px" alt="No Image!"  image={Menu_Item_Image+imageId}/>
                     </CardActionArea>
                 </Card>
-                <Button variant='contained' onClick={()=>handleOpen(ItemDetails,{})} > ADD </Button>
+                <Button variant='contained' onClick={()=>handleOpen(ItemDetails,{},undefined)} > ADD </Button>
             </ItemImage>
             </Stack>
             <Divider/>

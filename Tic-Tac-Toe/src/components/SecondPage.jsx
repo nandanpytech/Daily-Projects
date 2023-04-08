@@ -9,6 +9,7 @@ function SecondPage() {
     const [nextX, setnextX] = useState(selectedO)
     const [winner, setwinner] = useState(null)
     const [squares, setSquares] = useState(Array(9).fill(null))
+    
 
     function calculateWinner(squares) {
         const lines = [
