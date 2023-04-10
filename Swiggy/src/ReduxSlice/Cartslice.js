@@ -18,8 +18,7 @@ const cartslice=createSlice({
             }else{
                 const amount=addonsamount || OrderedItem.price/100 
                 if(PrevRes.id!==ParticularRes.id){
-                    state.CartItems.RestaurantDetails=[]
-                    state.CartItems.ResturantOrderedItems=[]
+                    state.CartItems={RestaurantDetails:[],ResturantOrderedItems:[]}
                     state.CartItems.RestaurantDetails.push(ParticularRes)
                 }
                 state.CartItems.ResturantOrderedItems.push( {OrderedItem,addons,amount})

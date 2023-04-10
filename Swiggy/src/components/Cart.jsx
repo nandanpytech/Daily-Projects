@@ -11,8 +11,11 @@ function Cart() {
   const cartItems=useSelector(store=>store.cart.CartItems)
   const Resname=cartItems?.RestaurantDetails[0]?.data?.name
   const Resarea=cartItems?.RestaurantDetails[0]?.data?.area
-
-  console.log(cartItems.ResturantOrderedItems);
+  const totalpay=  cartItems?.ResturantOrderedItems?.reduce((acc,curr)=>{
+                      return acc+curr.amount
+                     },0)
+ 
+  // console.log(cartItems?.ResturantOrderedItems);
 
 
   const MainStack=styled(Stack)`
@@ -68,7 +71,7 @@ function Cart() {
                         <ModeStandbyIcon sx={{color:'#60b246',fontSize:"1rem"}}></ModeStandbyIcon>
                         <Stack display="flex">
                             <Typography whiteSpace="normal" minWidth="144px"  fontSize={12} >{element?.OrderedItem?.name}</Typography>
-                            <Typography fontSize={8}>Customizze</Typography>
+                            <Typography  fontSize={8}>Customizze</Typography>
                         </Stack>
                           <Btngroup  style={{color:"#60b246",alignSelf:"center"}} variant='outlined'>
                               <Button>-</Button>
@@ -85,7 +88,7 @@ function Cart() {
                          <Typography  fontSize={12}    variant='body1'>Bill Details</Typography>
                          <Box >
                            <Typography  fontSize={12}  component='h2'  variant='body1'>Item Total</Typography>
-                           <Typography fontSize={12} > ₹99</Typography>
+                           <Typography fontSize={12} > ₹{totalpay}</Typography>
                          </Box>
                          <Box>
                            <Typography  fontSize={12}  component='h2'  variant='body1'>Delivery Fee | 7.5 kms</Typography>
@@ -94,7 +97,7 @@ function Cart() {
                          <Divider></Divider>
                          <Box>
                            <Typography  fontSize={12}  component='h2'  variant='body1'>Govt Taxes & Other Charges</Typography>
-                           <Typography fontSize={12} > ₹131</Typography>
+                           <Typography fontSize={12} > ₹15</Typography>
                          </Box>
                         
                  </BillDetails>
@@ -103,7 +106,7 @@ function Cart() {
                  <Box style={{padding:"1rem"}}>
                     <Stack display="flex" direction="row" justifyContent="space-between">
                           <Typography   fontWeight={700}  variant='body1'>To Pay</Typography>
-                           <Typography fontWeight={700}  variant='body1' > ₹131</Typography>
+                           <Typography fontWeight={700}  variant='body1' > ₹{totalpay+24+15}</Typography>
                     </Stack>
                   </Box>
            </MainStack>
