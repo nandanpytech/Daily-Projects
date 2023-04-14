@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 import ResCardShimmer from './ResCardShimmer';
 
 function BodyPart({allRestaurant}) {
-  console.log(allRestaurant);
   return (
     <>
     <Grid container spacing={6} sx={{padding:"1rem 3rem"}}>  

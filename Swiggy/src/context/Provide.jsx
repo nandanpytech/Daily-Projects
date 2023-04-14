@@ -4,9 +4,13 @@ export const FoodContext = createContext(null)
 
 function Provide({children}) {
   const [ParticularRes, setParticularRes] = useState([])
+  const [isdraweropen, setisdraweropen] = useState(false)
+  const [inputdata, setinputdata] = useState()
+
+
   return (
     <>
-    <FoodContext.Provider value={{ParticularRes,setParticularRes}}>
+    <FoodContext.Provider value={{ParticularRes,setParticularRes,isdraweropen,setisdraweropen,inputdata,setinputdata}}>
         {children}
     </FoodContext.Provider>
     

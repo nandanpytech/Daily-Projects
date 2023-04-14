@@ -12,10 +12,9 @@ function Cart() {
   const Resname=cartItems?.RestaurantDetails[0]?.data?.name
   const Resarea=cartItems?.RestaurantDetails[0]?.data?.area
   const totalpay=  cartItems?.ResturantOrderedItems?.reduce((acc,curr)=>{
-                      return acc+curr.amount
-                     },0)
+                      return acc+curr.amount},0)
  
-  // console.log(cartItems?.ResturantOrderedItems);
+  console.log(cartItems);
 
 
   const MainStack=styled(Stack)`

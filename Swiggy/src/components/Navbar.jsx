@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Stack, Typography, styled} from '@mui/material'
 import { KeyboardArrowDownIcon,
     SearchIcon,
@@ -7,10 +7,12 @@ import { KeyboardArrowDownIcon,
     PersonOutlineOutlinedIcon,
     ShoppingBagOutlinedIcon} from '../utils/Icons'
 import { Link } from 'react-router-dom'
+import { FoodContext } from '../context/Provide'
 
 
 
 function Navbar() {
+const {setisdraweropen}=useContext(FoodContext)
 const FirstStack=styled(Stack)`
     & > h4{
         text-decoration: underline;
@@ -47,7 +49,7 @@ const SecondStack=styled(Stack)`
   return (
     <Stack sx={{position:"fixed",top:0,width:"100%",backgroundColor:"white",zIndex:1}} display="flex" spacing={2} p={1} direction="row">
         <img width="100" height="55" src="https://logosandtypes.com/wp-content/uploads/2021/01/swiggy.svg" alt="" />
-        <FirstStack display="flex" spacing={2} direction="row" alignItems="center">
+        <FirstStack display="flex" spacing={2} direction="row" alignItems="center" onClick={()=>setisdraweropen(true)}>
             <Typography component="h4">
                 Others
             </Typography>

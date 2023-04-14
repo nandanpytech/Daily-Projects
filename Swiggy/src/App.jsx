@@ -5,6 +5,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
 import { Provider } from 'react-redux'
 import store from "./Store/store";
+import HomePageDrawer from "./components/HomePageDrawer";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Provider store={store}>
           <Navbar/>
           <Outlet/>
+          <HomePageDrawer></HomePageDrawer>
       </Provider>
       
     </div>
