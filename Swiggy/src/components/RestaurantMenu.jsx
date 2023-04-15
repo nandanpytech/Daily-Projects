@@ -1,27 +1,31 @@
-import {React,useEffect,useState} from 'react'
+import {React,useContext,useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom'
 import Breadcrumb from './Breadcrumb'
 import ItemAccordion from './ItemAccordion'
 import RestaurantDetails from './RestaurantDetails'
-import { Restaurant_Details } from '../utils/const'
 import { allRestaurant } from '../FetchData/RestaurantData'
+import { FoodContext } from '../context/Provide'
 
 function RestaurantMenu() {
   const [MenuItems, setMenuItems] = useState([])
   const [Allrestaurant, setAllrestaurant] = useState([])
   const {resid}=useParams()
+  const {coordinate}=useContext(FoodContext)
  
 
   //Fetch Particular Restaurant Details
   const Particularrestaurantdetails=async(resid)=>{
-    const data= await fetch(Restaurant_Details+`${resid}&submitAction=ENTER`)
+    const data= await fetch(coordinate?
+      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${coordinate.lat}&lng=${coordinate.lon}&restaurantId=${resid}&submitAction=ENTER`:
+      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9762&lng=77.6033&restaurantId=${resid}&submitAction=ENTER`
+      )
     const res= await data.json()
     setMenuItems(res.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards)
   }
 
   //Fetch all Restaurant details
   const fetchRestaurantDetails=async()=>{
-    const ResDetils=await allRestaurant()
+    const ResDetils=await allRestaurant(coordinate,"RELEVANCE")
     setAllrestaurant(ResDetils.data.cards[2].data.data.cards)
   }
 

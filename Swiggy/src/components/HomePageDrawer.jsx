@@ -21,7 +21,6 @@ function HomePageDrawer() {
 
 
     useEffect(()=>{
-        console.log("hiii");
         let value=JSON.parse(localStorage.getItem("recentSearch"))
         if(!Array.isArray(value)){
             value=[]
@@ -73,7 +72,7 @@ function HomePageDrawer() {
                                 return (
                                     <Box display="flex"  p={2} pt={0}  gap="1rem" >
                                             <HistoryIcon/>
-                                            <Box>
+                                            <Box onClick={()=>setinputdata(ele)} style={{cursor:"pointer"}}>
                                                 <Typography fontSize={15} fontWeight="bold" color="#282c3f">{ele}</Typography>
                                                 <Typography fontSize={10} color="#93959f">Karnatak, India</Typography>
                                             </Box>

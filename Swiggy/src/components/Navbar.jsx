@@ -6,7 +6,7 @@ import { KeyboardArrowDownIcon,
     SupportOutlinedIcon,
     PersonOutlineOutlinedIcon,
     ShoppingBagOutlinedIcon} from '../utils/Icons'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { FoodContext } from '../context/Provide'
 
 
@@ -49,7 +49,9 @@ const SecondStack=styled(Stack)`
 `
   return (
     <Stack sx={{position:"fixed",top:0,width:"100%",backgroundColor:"white",zIndex:1}} display="flex" spacing={2} p={1} direction="row">
-        <img width="100" height="55" src="https://logosandtypes.com/wp-content/uploads/2021/01/swiggy.svg" alt="" />
+        <NavLink to="/">
+          <img width="100" height="55" src="https://logosandtypes.com/wp-content/uploads/2021/01/swiggy.svg" alt="" />
+        </NavLink>
         <FirstStack display="flex" spacing={2}  direction="row" alignItems="center" onClick={()=>setisdraweropen(true)}>
             <Typography component="h4">
                 Others

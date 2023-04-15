@@ -4,6 +4,7 @@ import { card_image } from '../utils/Images';
 import styled from '@emotion/styled';
 import { ModeStandbyIcon } from '../utils/Icons';
 import { useSelector } from 'react-redux';
+import { No_Cart_Image } from '../utils/const';
 
 
 
@@ -14,7 +15,6 @@ function Cart() {
   const totalpay=  cartItems?.ResturantOrderedItems?.reduce((acc,curr)=>{
                       return acc+curr.amount},0)
  
-  console.log(cartItems);
 
 
   const MainStack=styled(Stack)`
@@ -47,9 +47,10 @@ function Cart() {
 
         {
           cartItems.RestaurantDetails.length==0? 
-          <MainStack mt={12}>
-            <h1>No cart Items</h1>
-          </MainStack>
+          <Stack mt={12} style={{background:"#e9ecee",maxWidth:"400px",margin:"96px auto"}}>
+            <img src={No_Cart_Image} alt="" />
+            <Typography variant='h5' fontWeight="bold" textAlign="center" mt={2}>No Item in Cart</Typography>
+          </Stack>
           :
           <MainStack mt={12} display="flex"  spacing={2}>
               <Box style={{padding:"1rem"}}>
