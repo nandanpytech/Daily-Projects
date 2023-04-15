@@ -1,8 +1,10 @@
 import { Stack, Divider, Typography, Box, styled } from '@mui/material'
-import React from 'react'
+import {React,useContext} from 'react'
+import {filters} from '../utils/const.js'
+import {FoodContext }from '../context/Provide'
 
 function BodyHeader() {
-
+   const {setsorttype}=useContext(FoodContext)
     const Secondstack=styled(Stack)`
         &> h6{
             color: #686b78;
@@ -11,6 +13,10 @@ function BodyHeader() {
             cursor: pointer;
         }
     `
+
+    const filterdata=(key)=>{
+        setsorttype(key)
+    }
   return (
    <>
     <Box sx={{margin:"2rem 1rem"}}>
@@ -25,22 +31,18 @@ function BodyHeader() {
             </Stack>
 
             <Secondstack display="flex" direction="row" spacing={5} sx={{marginLeft:"auto !important"}}>
-                <Typography alignSelf="center" variant='subtitle1'>
-                    Relevence
-                </Typography>
-                <Typography alignSelf="center" variant='subtitle1'>
-                Delivery Time
-                </Typography>
-                <Typography alignSelf="center" variant='subtitle1'>
-                    Rating
-                </Typography>
-                <Typography alignSelf="center" variant='subtitle1'>
-                    Cost: Low To High
-                </Typography>
-                <Typography alignSelf="center" marginRight={4} variant='subtitle1'>
-                    Cost: High To Low
-                </Typography>
-                <Stack display="flex" direction="row" spacing={1}>
+                {
+                     Object.keys(filters).map(key => {
+                        return (
+                            <Typography alignSelf="center" variant='subtitle1' onClick={()=>filterdata(key)}>
+                                {filters[key]}
+                             </Typography>
+
+                        )
+                    })
+                    
+                }
+                <Stack display="flex" marginLeft={4} direction="row" spacing={1}>
                         <Typography alignSelf="center" variant='subtitle1' fontWeight="bold">
                                 Filters
                         </Typography>

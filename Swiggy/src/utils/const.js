@@ -6,3 +6,13 @@ export{
     Restaurant_Details,
     Menu_Item_Image
 }
+
+
+export const filters={
+    RELEVANCE:"Relevance",
+    DELIVERY_TIME:"Delivery Time",
+    RATING:"Rating",
+    COST_FOR_TWO:"Cost:Low To High",
+    COST_FOR_TWO_H2L:"Cost:Hight To Low "
+}
+    

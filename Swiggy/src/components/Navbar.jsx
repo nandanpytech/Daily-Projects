@@ -12,8 +12,9 @@ import { FoodContext } from '../context/Provide'
 
 
 function Navbar() {
-const {setisdraweropen}=useContext(FoodContext)
-const FirstStack=styled(Stack)`
+const {setisdraweropen,inputdata}=useContext(FoodContext)
+const FirstStack=styled(Stack)` 
+    cursor: pointer;
     & > h4{
         text-decoration: underline;
         font-size:.9rem;
@@ -49,12 +50,12 @@ const SecondStack=styled(Stack)`
   return (
     <Stack sx={{position:"fixed",top:0,width:"100%",backgroundColor:"white",zIndex:1}} display="flex" spacing={2} p={1} direction="row">
         <img width="100" height="55" src="https://logosandtypes.com/wp-content/uploads/2021/01/swiggy.svg" alt="" />
-        <FirstStack display="flex" spacing={2} direction="row" alignItems="center" onClick={()=>setisdraweropen(true)}>
+        <FirstStack display="flex" spacing={2}  direction="row" alignItems="center" onClick={()=>setisdraweropen(true)}>
             <Typography component="h4">
                 Others
             </Typography>
             <Typography>
-                Bengalurru,Karnatak,India 
+                {inputdata},Karnatak,India 
             </Typography>
             <KeyboardArrowDownIcon id="arrowicon"/>
         </FirstStack>

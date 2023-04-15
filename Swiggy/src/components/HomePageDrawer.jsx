@@ -1,24 +1,43 @@
-import {React, useContext,useState} from 'react'
-import { Box, Drawer, InputBase, Typography } from '@mui/material';
+import {React, useContext,useEffect,useState} from 'react'
+import { Box, Drawer, InputBase, Typography, Stack } from '@mui/material';
 import GpsFixedOutlinedIcon from '@mui/icons-material/GpsFixedOutlined';
 import { FoodContext } from '../context/Provide';
-import { CloseIcon } from '../utils/Icons';
-import { getlocationdata } from '../FetchData/FetchRegionData';
+import { CloseIcon,HistoryIcon } from '../utils/Icons';
 
 function HomePageDrawer() {
-    const {isdraweropen,setisdraweropen,inputdata,setinputdata}=useContext(FoodContext)
+    const {isdraweropen,setisdraweropen,inputdata,setinputdata,getlocation}=useContext(FoodContext)
+    const [locationdata, setlocationdata] = useState()
+    const [recentsearches, setrecentsearches] = useState([])
 
     const handleinput=(e)=>{
         setinputdata(e.target.value)
     }
     const handlesubmit=(e)=>{
         e.preventDefault()
-        getregiondata()
+        setisdraweropen(false)
+        let a=getlocation(inputdata)
+        setlocationdata(a)
     }
-    const getregiondata=async()=>{
-        const data=await getlocationdata(inputdata)
-        console.log(data);
-    }
+
+
+    useEffect(()=>{
+        console.log("hiii");
+        let value=JSON.parse(localStorage.getItem("recentSearch"))
+        if(!Array.isArray(value)){
+            value=[]
+        }
+        if(!value.includes(inputdata)){
+            if(value.length>2){
+                value.shift()
+                console.log(value);
+            }
+            value.push(inputdata)
+        }
+        localStorage.setItem("recentSearch",JSON.stringify(value))
+        setrecentsearches(value)
+    },[locationdata])
+
+
   return (
         <Drawer
         anchor="left"
@@ -45,6 +64,26 @@ function HomePageDrawer() {
 
                     </Box>
                 </Box>
+
+                <Stack display="flex" direction="column" p={2} mt={5} spacing={2} style={{border:".3px solid #a9abb2"}}>
+                        <Typography fontSize={12} color="#93959f" style={{padding:"1rem 3.5rem 0"}}>RECENT SEARCHES</Typography>
+
+                        {
+                            recentsearches.slice(0).reverse().map((ele)=>{
+                                return (
+                                    <Box display="flex"  p={2} pt={0}  gap="1rem" >
+                                            <HistoryIcon/>
+                                            <Box>
+                                                <Typography fontSize={15} fontWeight="bold" color="#282c3f">{ele}</Typography>
+                                                <Typography fontSize={10} color="#93959f">Karnatak, India</Typography>
+                                            </Box>
+                                    </Box>
+                                )
+                            })
+                        }
+                        
+                </Stack>
+               
 
 
             </Box>
