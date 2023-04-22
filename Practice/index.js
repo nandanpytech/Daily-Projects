@@ -103,7 +103,7 @@ console.log("hi");
 // {
 //     let person={name:"Nandan"}
 //     const a=[person]
-//     person=null           // it doesn't effect on the a
+//     person=null            // it doesn't effect on the a
 //     person.name=null       //it definitly effect on a
 //     console.log(a)
 // }
