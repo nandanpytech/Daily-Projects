@@ -27,7 +27,6 @@ function Comments({comments}) {
                      <p className="edit" onClick={()=>seteditmode(true)}>Edit</p>
                      <p className="delete">Delete</p>
                 </>
-
             }
             
          </div>
