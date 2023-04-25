@@ -1,40 +1,28 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import Comments from './components/Comments'
+import useNode from './hooks'
 
 function App() {
   const data={
     id:1,
-    items:[
-      {
-        id:241,
-        name:"Reactjs",
-        items:[
-          {
-            id:242,
-            name:"Javascriptjs",
-            items:[
-              {
-                id:243,
-                name:"Vuejs",
-                items:[]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id:244,
-        name:"Python",
-        items:[
+    items:[]
+  }
+  const [commentsdata, setcommentsdata] = useState(data)
+  const {insertnode}=useNode()
 
-        ]
-      }
-    ]
+  const insertcomments=(commentid,item)=>{
+    const updateddata=insertnode(commentsdata,commentid,item)
+    setcommentsdata(updateddata)
+
   }
 
   return (
     <div className="App">
-        <Comments comments={data}/>
+        <Comments
+         comments={commentsdata}
+         insertcomments={insertcomments}
+         />
     </div>
   )
 }

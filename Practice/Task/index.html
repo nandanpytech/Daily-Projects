@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="number" name="" id="input-box">
+    </div>  
+   
+    <span id="suggestion"></span>
+</body>
+<script>
+    const input_box=document.querySelector("#input-box")
+    const suggestion_box=document.querySelector("#suggestion")
+    input_box.addEventListener("input",displaynumbers)
+
+    function displaynumbers(){
+        const value=parseInt (input_box.value)
+        if(value<0){
+            suggestion_box.innerHTML="Please Enter Positive Value"
+        }else{
+            suggestion_box.innerHTML=`${value+2} ${value+4} ${value+6}`
+        }
+    }
+</script>
+</html>

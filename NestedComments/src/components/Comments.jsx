@@ -1,16 +1,22 @@
 import {React,useState} from 'react'
 
-function Comments({comments}) {
+function Comments({comments,insertcomments}) {
     const [inputdata, setinputdata] = useState("")
     const [editmode, seteditmode] = useState(false)
     const [showinput, setshowinput] = useState(false)
+
+    const addcomments=(check)=>{
+     insertcomments(comments.id,inputdata)
+     setinputdata("")
+    check &&  setshowinput(!showinput)
+    }
   return (
     <>
     {
         comments.id==1 ?
         <div className="input-box">
             <input type="text" onChange={(e)=>setinputdata(e.target.value)} value={inputdata} placeholder='Type something...'/>
-            <button className='btn'>Comment</button>
+            <button className='btn' onClick={()=>addcomments(false)}>Comment</button>
          </div>
          :
          <div className="comment-data">
@@ -40,7 +46,7 @@ function Comments({comments}) {
             <div className="reply-input">
              <input type="text" onChange={(e)=>setinputdata(e.target.value)} value={inputdata} placeholder='Type something...'/>
              <div className="editors">
-              <p className="save">Reply</p>
+              <p className="reply" onClick={()=>addcomments(true)}>Reply</p>
               <p className="cancel" onClick={()=>setshowinput(false)}>Cancel</p>
              </div>
             </div>
@@ -48,8 +54,8 @@ function Comments({comments}) {
             </>
         }
         {
-            comments.items.map((ele)=>{
-                return <Comments comments={ele}/>
+            comments.items.map((ele,index)=>{
+                return <Comments insertcomments={insertcomments} key={index} comments={ele}/>
             })
         }
        
